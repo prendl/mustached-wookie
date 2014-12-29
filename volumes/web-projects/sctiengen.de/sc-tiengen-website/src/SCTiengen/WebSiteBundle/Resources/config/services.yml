@@ -1,0 +1,21 @@
+services:
+#    sc_tiengen_web_site.example:
+#        class: SCTiengen\WebSiteBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+    sc_tiengen_web_site.phpcr.initializer:
+        class: Doctrine\Bundle\PHPCRBundle\Initializer\GenericInitializer
+        arguments:
+            - SCTiengenWebSiteBundle Basepaths
+            - [ "/cms/routes", "/cms/simple" ]
+        tags:
+            - { name: "doctrine_phpcr.initializer" }
+    sc_tiengen_web_site.admin.page:
+        class: SCTiengen\WebSiteBundle\Admin\PageAdmin
+        arguments:
+            - ''
+            - SCTiengen\WebSiteBundle\Document\Page
+            - 'SonataAdminBundle:CRUD'
+        tags:
+            - { name: sonata.admin, manager_type: doctrine_phpcr, group: 'Basic CMS', label: Page }
+        calls:
+            - [setRouteBuilder, ['@sonata.admin.route.path_info_slashes']]

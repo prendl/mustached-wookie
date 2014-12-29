@@ -1,0 +1,3 @@
+sc_tiengen_web_site_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: SCTiengenWebSiteBundle:Default:index }

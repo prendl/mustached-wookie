@@ -1,3 +1,7 @@
+sc_tiengen_web_site:
+    resource: "@SCTiengenWebSiteBundle/Resources/config/routing.yml"
+    prefix:   /
+
 # AcmeDemoBundle routes (to be removed)
 _demo:
     resource: "@AcmeDemoBundle/Resources/config/routing.yml"
