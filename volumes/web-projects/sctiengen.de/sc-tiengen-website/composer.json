@@ -33,7 +33,8 @@
         "nelmio/alice": "~1.0",
         "sonata-project/doctrine-phpcr-admin-bundle": "~1.2",
         "symfony-cmf/seo-bundle": "~1.1",
-        "burgov/key-value-form-bundle": "~1.0"
+        "burgov/key-value-form-bundle": "~1.0",
+        "knplabs/knp-markdown-bundle": "~1.3"
     },
     "require-dev": {
         "liip/functional-test-bundle": "~1.0",
