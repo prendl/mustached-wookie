@@ -83,12 +83,38 @@ cmf_core:
 
 # Cmf Routing Configuration
 cmf_routing:
+    chain:
+        routers_by_id:
+            # enable the DynamicRouter with a low priority
+            # this way the non dynamic routes take precedence
+            # to prevent needless database look ups
+            cmf_routing.dynamic_router: 200
+
+            # enable the symfony default router with a higher priority
+            router.default: 100
     dynamic:
+        generic_controller: cmf_content.controller:indexAction
+        controllers_by_class:
+            Symfony\Cmf\Bundle\ContentBundle\Document\StaticContent: cmf_content.controller::indexAction
         templates_by_class:
             Symfony\Cmf\Bundle\SimpleCmsBundle\Doctrine\Phpcr\Page: AcmeDemoBundle:Page:index.html.twig
         persistence:
             phpcr:
+                route_basepath: /cms/routes
                 use_sonata_admin: false
+
+cmf_simple_cms:
+    use_menu: auto
+    persistence:
+        phpcr:
+            enabled:          true
+            basepath:         /cms/simple
+            manager_registry: doctrine_phpcr
+            manager_name:     ~
+            document_class:   Symfony\Cmf\Bundle\SimpleCmsBundle\Doctrine\Phpcr\Page
+            use_sonata_admin: auto
+            sonata_admin:
+                sort: false
 
 # Menu Configuration
 knp_menu:
@@ -116,6 +142,18 @@ sonata_doctrine_phpcr_admin:
         Doctrine\ODM\PHPCR\Document\Generic:
             valid_children:
                 - all
+        Symfony\Cmf\Bundle\SimpleCmsBundle\Doctrine\Phpcr\Page:
+            valid_children:
+                - Symfony\Cmf\Bundle\SimpleCmsBundle\Doctrine\Phpcr\Page
+                - Symfony\Cmf\Bundle\MenuBundle\Doctrine\Phpcr\MenuNode
+        Symfony\Cmf\Bundle\ContentBundle\Doctrine\Phpcr\StaticContent:
+            valid_children:
+                - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock
+                - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ContainerBlock
+                - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ReferenceBlock
+                - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ActionBlock
+        Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ReferenceBlock:
+            valid_children: []
 
 # Cmf Create Configuration
 fos_rest:
