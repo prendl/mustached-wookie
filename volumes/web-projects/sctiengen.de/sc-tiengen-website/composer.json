@@ -25,7 +25,6 @@
         "symfony/swiftmailer-bundle": "~2.3",
         "symfony/monolog-bundle": "~2.4",
         "symfony-cmf/symfony-cmf": "1.2.*",
-        "symfony-cmf/simple-cms-bundle": "1.2.*",
         "symfony-cmf/create-bundle": "1.2.*",
         "jackalope/jackalope-doctrine-dbal": "1.1.*",
         "sensio/distribution-bundle": "~3.0",
