@@ -81,6 +81,14 @@ cmf_core:
         # basepath: /custom/basepath
     publish_workflow: false
 
+cmf_menu:
+    persistence:
+        phpcr:
+            # use true/false to force using / not using sonata admin
+            use_sonata_admin: true
+            # used with Sonata Admin to manage content; defaults to %cmf_core.basepath%/content
+            content_basepath: /cms/menu
+
 # Cmf Routing Configuration
 cmf_routing:
     chain:
@@ -88,20 +96,25 @@ cmf_routing:
             # enable the DynamicRouter with a low priority
             # this way the non dynamic routes take precedence
             # to prevent needless database look ups
-            cmf_routing.dynamic_router: 200
-
+            cmf_routing.dynamic_router: 20
             # enable the symfony default router with a higher priority
             router.default: 100
     dynamic:
         generic_controller: cmf_content.controller:indexAction
         controllers_by_class:
             Symfony\Cmf\Bundle\ContentBundle\Document\StaticContent: cmf_content.controller::indexAction
+            Symfony\Cmf\Bundle\RoutingBundle\Doctrine\Phpcr\RedirectRoute: cmf_routing.redirect_controller:redirectAction
         templates_by_class:
-            Symfony\Cmf\Bundle\SimpleCmsBundle\Doctrine\Phpcr\Page: AcmeDemoBundle:Page:index.html.twig
+            Symfony\Cmf\Bundle\ContentBundle\Document\StaticContent: AcmeDemoBundle:Page:index.html.twig
         persistence:
             phpcr:
                 route_basepath: /cms/routes
-                use_sonata_admin: false
+                use_sonata_admin: true
+
+cmf_seo:
+    title: %%content_title%% - SC Freiburg-Tiengen
+    description: %%content_description%%
+    alternate_locale: ~
 
 cmf_simple_cms:
     use_menu: auto
@@ -112,7 +125,7 @@ cmf_simple_cms:
             manager_registry: doctrine_phpcr
             manager_name:     ~
             document_class:   Symfony\Cmf\Bundle\SimpleCmsBundle\Doctrine\Phpcr\Page
-            use_sonata_admin: auto
+            use_sonata_admin: true
             sonata_admin:
                 sort: false
 
@@ -131,10 +144,45 @@ sonata_block:
             contexts: [admin]
 
 sonata_admin:
+    extensions:
+        cmf_core.admin_extension.child:
+            implements:
+                - Symfony\Cmf\Bundle\CoreBundle\Model\ChildInterface
+        cmf_menu.admin_extension.menu_node_referrers:
+            implements:
+                - Symfony\Cmf\Bundle\MenuBundle\Model\MenuNodeReferrersInterface
+        cmf_menu.admin_extension.menu_options:
+            implements:
+                - Symfony\Cmf\Bundle\MenuBundle\Model\MenuOptionsInterface
     dashboard:
         blocks:
             - { position: left, type: sonata_admin_doctrine_phpcr.tree_block }
             - { position: right, type: sonata.admin.block.admin_list }
+        groups:
+            content:
+                label: Content
+                items:
+                    - cmf_content.admin
+                    - cmf_block.simple_admin
+                    - cmf_block.container_admin
+                    - cmf_block.reference_admin
+                    - cmf_block.action_admin
+                    #- cmf_block.imagine.slideshow_admin
+                    #- cmf_block.imagine.imagine_admin
+            routing:
+                label: URLs
+                items:
+                    - cmf_routing.route_admin
+                    - cmf_routing.redirect_route_admin
+            menu:
+                label: Menu
+                items:
+                    - cmf_menu.menu_admin
+                    - cmf_menu.node_admin
+            simplecms:
+                label: Simple CMS
+                items:
+                    - cmf_simple_cms.persistence.phpcr.admin.page
 
 sonata_doctrine_phpcr_admin:
     document_tree_defaults: [locale]
@@ -142,18 +190,46 @@ sonata_doctrine_phpcr_admin:
         Doctrine\ODM\PHPCR\Document\Generic:
             valid_children:
                 - all
-        Symfony\Cmf\Bundle\SimpleCmsBundle\Doctrine\Phpcr\Page:
-            valid_children:
-                - Symfony\Cmf\Bundle\SimpleCmsBundle\Doctrine\Phpcr\Page
-                - Symfony\Cmf\Bundle\MenuBundle\Doctrine\Phpcr\MenuNode
         Symfony\Cmf\Bundle\ContentBundle\Doctrine\Phpcr\StaticContent:
             valid_children:
                 - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock
                 - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ContainerBlock
                 - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ReferenceBlock
                 - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ActionBlock
+                #- Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SlideshowBlock
         Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ReferenceBlock:
             valid_children: []
+        Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ActionBlock:
+            valid_children: []
+        Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock:
+            valid_children: []
+        Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SlideshowBlock:
+            valid_children:
+                - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ImagineBlock
+        Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ImagineBlock:
+            valid_children: []
+        Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ContainerBlock:
+            valid_children:
+                - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock
+                - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ContainerBlock
+                - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ReferenceBlock
+                - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ActionBlock
+                #- Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SlideshowBlock
+        Symfony\Cmf\Bundle\SimpleCmsBundle\Doctrine\Phpcr\Page:
+            valid_children:
+                - Symfony\Cmf\Bundle\SimpleCmsBundle\Doctrine\Phpcr\Page
+        Symfony\Cmf\Bundle\RoutingBundle\Doctrine\Phpcr\Route:
+            valid_children:
+                - Symfony\Cmf\Bundle\RoutingBundle\Doctrine\Phpcr\Route
+                - Symfony\Cmf\Bundle\RoutingBundle\Doctrine\Phpcr\RedirectRoute
+        Symfony\Cmf\Bundle\RoutingBundle\Doctrine\Phpcr\RedirectRoute:
+            valid_children: []
+        Symfony\Cmf\Bundle\MenuBundle\Doctrine\Phpcr\Menu:
+            valid_children:
+                - Symfony\Cmf\Bundle\MenuBundle\Doctrine\Phpcr\MenuNode
+        Symfony\Cmf\Bundle\MenuBundle\Doctrine\Phpcr\MenuNode:
+            valid_children:
+                - Symfony\Cmf\Bundle\MenuBundle\Doctrine\Phpcr\MenuNode
 
 # Cmf Create Configuration
 fos_rest:

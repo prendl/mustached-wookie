@@ -32,6 +32,7 @@ class AppKernel extends Kernel
 
             new Symfony\Cmf\Bundle\MenuBundle\CmfMenuBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new \Burgov\Bundle\KeyValueFormBundle\BurgovKeyValueFormBundle(),
 
             new Symfony\Cmf\Bundle\CreateBundle\CmfCreateBundle(),
             new FOS\RestBundle\FOSRestBundle(),
@@ -42,6 +43,9 @@ class AppKernel extends Kernel
             
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new Symfony\Cmf\Bundle\TreeBrowserBundle\CmfTreeBrowserBundle(),
+
+            new Sonata\SeoBundle\SonataSeoBundle(),
+            new Symfony\Cmf\Bundle\SeoBundle\CmfSeoBundle(),
 
             // Remove this Bundle when using the SE as the basis for a new project
             new Acme\DemoBundle\AcmeDemoBundle(),
