@@ -1,0 +1,5 @@
+{% block container %}
+  {% for childBlock in block.children %}
+	{{ sonata_block_render(childBlock, {'template': 'SCTiengenWebSiteBundle:Blocks:' ~ childBlock.name ~ '.html.twig'}) }}  
+  {% endfor %}
+{% endblock %}

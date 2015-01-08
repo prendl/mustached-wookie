@@ -1,0 +1,21 @@
+services:
+    sctiengen_website.admin.markdown:
+        class: SCTiengen\WebSiteBundle\Admin\MarkdownBlockAdmin
+        tags:
+            - { name: sonata.admin, manager_type: doctrine_phpcr, group: "Content", label: "Markdown-Block" }
+        arguments:
+            - ''
+            - SCTiengen\WebSiteBundle\Document\MarkdownBlock
+            - 'SonataAdminBundle:CRUD'
+        calls:
+            - [ setTranslationDomain, [SCTiengenWebSiteBundle]]
+    sctiengen_website.admin.page:
+        class: SCTiengen\WebSiteBundle\Admin\PageAdmin
+        tags:
+            - { name: sonata.admin, manager_type: doctrine_phpcr, group: "Content", label: "Page" }
+        arguments:
+            - ''
+            - SCTiengen\WebSiteBundle\Document\Page
+            - 'SonataAdminBundle:CRUD'
+        calls:
+            - [ setTranslationDomain, [SCTiengenWebSiteBundle]]

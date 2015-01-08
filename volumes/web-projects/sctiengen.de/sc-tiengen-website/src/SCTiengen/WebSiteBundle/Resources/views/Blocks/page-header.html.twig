@@ -1,0 +1,10 @@
+{% extends "SCTiengenWebSiteBundle:Blocks:row.html.twig" %}
+
+{% block row %}
+{% set classAddition = 'page-header' %}
+{{ parent() }}
+{% endblock %}
+
+{% block row_inner %}
+  {{ block.content|markdown }}
+{% endblock %}

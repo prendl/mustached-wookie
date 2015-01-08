@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="de" class="no-js">
+  <head>
+    {% block head_inner -%}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title_inner %}SC Tiengen{% endblock %}</title>
+    {% block css_includes_header -%}
+    <link href="{{ asset('bundles/sctiengenwebsite/css/fonts.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/sctiengenwebsite/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/sctiengenwebsite/css/bootstrap-theme.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/sctiengenwebsite/css/main.less.css') }}" rel="stylesheet">
+    {%- endblock %}
+    {% block js_includes_header -%}
+    <script src="{{ asset('bundles/sctiengenwebsite/js/modernizr-2.8.3.min.js') }}"></script>
+    {%- endblock %}
+    {%- endblock %}
+  </head>
+  <body>
+    <!--[if lt IE 9]> <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p> <![endif]-->
+    <div class="container">
+      {% block sidebar_left %}{% endblock %}
+      <div id="page">
+        {% block page_header -%}
+        <div id="page_header">
+          {% block page_header_inner -%}
+          <img id="logo" src="{{ asset('bundles/sctiengenwebsite/images/sct-vereinswappen.png') }}" alt="SC Tiengen" width="148" height="148">
+          <img id="logo-50" src="{{ asset('bundles/sctiengenwebsite/images/50-jahre-sc-tiengen-logo.png') }}" alt="50 Jahre SC Tiengen" width="213" height="56">
+          {%- endblock %}
+        </div>
+        {%- endblock %}
+        {% block page_main -%}
+        <div id="page_main">
+          {% block page_main_inner -%}
+          <div class="row">
+            <div id="nav_bread" class="col-sm-6">
+              <ol class="breadcrumb">
+                <li><a href="start.html">SC Tiengen</a></li>
+                <li><a href="inhalt.html">Mannschaften</a></li>
+              </ol>
+            </div>
+          </div>
+          <div class="row">
+            <div class="page-header col-sm-12">
+              <h1>Unsere Mannschaften</h1>
+            </div>
+          </div>
+          <div class="row">
+              <div class="jumbotron col-xs-12 col-sm-10 col-sm-offset-1">
+                <h1>An alle Kicker</h1>
+                <p>Vorwort unserer Jugendleitung: Philosophie, Zielsetzung, Kontakt</p>
+                <p><a class="btn btn-primary btn-lg" href="#" role="button">Weiterlesen</a></p>
+              </div>
+          </div>
+          <nav>
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 col-md-5 col-md-offset-1">
+                <ol class="nav nav-pills nav-stacked">
+                  <li><a>C-Jugend Mädchen</a></li>
+                  <li><a>C-Jugend Jungen</a></li>
+                  <li><a>D-Jugend Jungen</a></li>
+                  <li><a>E-Jugend Jungen</a></li>
+                </ol>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-5">
+                <ol class="nav nav-pills nav-stacked">
+                  <li><a>F-Jugend Jungen</a></li>
+                  <li><a>G-Jugend / Bambini</a></li>
+                  <li><a>"Alte" Herren</a></li>
+                </ol>
+              </div>
+            </div>
+          </nav>
+          <div class="row">
+            <div class="col-sm-12">
+              <p>Text über Herren-Mannschaft, Link zu Geschichte.</p>
+            </div>
+          </div>
+          {%- endblock %}
+        </div>
+        {%- endblock %}
+      </div>
+    </div>
+    {% block footer -%}
+    <div id="page_footer">
+      <div class="container">
+        {% block footer_inner -%}
+        <div class="item text-muted">© SC Freiburg-Tiengen e.V.</div>
+        <div class="item"><a>Impressum</a></div>
+        <div class="item"><a>Datenschutz</a></div>
+        {%- endblock %}
+        <div id="socialshareprivacy"></div>
+      </div>
+    </div>
+    {%- endblock %}
+    {% block js_includes_footer -%}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="{{ asset('bundles/sctiengenwebsite/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bundles/sctiengenwebsite/js/jquery.socialshareprivacy.min.js') }}"></script>
+    <script src="{{ asset('bundles/sctiengenwebsite/js/main.js') }}"></script>
+    {%- endblock %}
+  </body>
+</html>

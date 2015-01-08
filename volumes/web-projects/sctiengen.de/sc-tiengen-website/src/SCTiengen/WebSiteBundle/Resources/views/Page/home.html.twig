@@ -1,0 +1,32 @@
+{% extends "SCTiengenWebSiteBundle::base.html.twig" %}
+
+{% use "SCTiengenWebSiteBundle::blocks.html.twig" %}
+
+{% block page_main_inner %}
+<nav role="navigation">
+  <div class="row">
+    <div class="col-xs-12 col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-3">
+      <section class="tile nav-1">
+        <span><a href="inhalt.html">Mannschaften</a></span>
+      </section>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-md-3">
+      <section class="tile nav-2">
+        <span><a>Termine</a></span>
+      </section>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-3">
+      <section class="tile nav-3">
+        <span><a>Verein</a></span>
+      </section>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-md-3">
+      <section class="tile nav-4">
+        <span><a>Unterstützer</a></span>
+      </section>
+    </div>
+  </div>
+</nav>
+{% endblock %}
