@@ -1,0 +1,11 @@
+@charset 'UTF-8';
+
+@font-face {
+  font-family: 'Arsenal';
+  src: url('../fonts/Arsenal-Regular.otf');
+}
+
+@font-face {
+  font-family: 'Arsenal-Bold';
+  src: url('../fonts/Arsenal-Bold.otf');
+}
