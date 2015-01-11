@@ -2,7 +2,7 @@ services:
 #    sc_tiengen_web_site.example:
 #        class: SCTiengen\WebSiteBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
-    sc_tiengen_web_site.phpcr.initializer:
+    sctiengen_website.phpcr.initializer:
         class: Doctrine\Bundle\PHPCRBundle\Initializer\GenericInitializer
         arguments:
             - SCTiengenWebSiteBundle Basepaths
