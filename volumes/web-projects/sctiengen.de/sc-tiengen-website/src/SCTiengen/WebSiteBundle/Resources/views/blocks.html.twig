@@ -1,13 +1,14 @@
 {% block sidebar_left %}
+  {% set menu = knp_menu_get('nav-main') %}
+  {% if menu.hasChildren %}
 <div id="sidebar_left">
   <nav role="navigation">
     <ol>
-      <li class="tile nav-1"><a href="inhalt.html" class="text-hide">Man</a></li>
-      <li class="tile nav-2"><a class="text-hide">Ver</a></li>
-      <li class="tile nav-3"><a class="text-hide">Ter</a></li>
-      <li class="tile nav-4"><a class="text-hide">Unt</a></li>
-      <li class="tile nav-5"><a class="text-hide">Akt</a></li>
+    {% for item in menu.children %}
+        <li class="tile nav-{{ loop.index }}"><a href="{{ item.uri }}" class="text-hide">{{ item.label }}</a></li>
+    {% endfor %}
     </ol>
   </nav>
 </div>
+  {% endif %}
 {% endblock %}

@@ -1,4 +1,4 @@
-{% extends "SCTiengenWebSiteBundle::base.html.twig" %}
+{% extends "SCTiengenWebSiteBundle:Page:base.html.twig" %}
 
 {% use "SCTiengenWebSiteBundle::blocks.html.twig" %}
 
@@ -7,5 +7,16 @@
 {%- endblock %}
 
 {% block page_main_inner -%}
+
+
+          <div class="row">
+            <div id="nav_bread" class="col-sm-6">
+              <ol class="breadcrumb">
+                <li><a href="start.html">SC Tiengen</a></li>
+                <li><a href="inhalt.html">Mannschaften</a></li>
+              </ol>
+            </div>
+          </div>
+
 {{ sonata_block_render({'name': 'container'}, {'template': 'SCTiengenWebSiteBundle::container.html.twig'}) }}
 {%- endblock %}
