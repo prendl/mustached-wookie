@@ -3,6 +3,7 @@
 {% use "SCTiengenWebSiteBundle::blocks.html.twig" %}
 
 {% block page_main_inner %}
+{{ sonata_block_render({'name': 'container'}, {'template': 'SCTiengenWebSiteBundle::container.html.twig'}) }}
 <nav role="navigation">
   <div class="row">
     <div class="col-xs-12 col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-3">
@@ -30,3 +31,5 @@
   </div>
 </nav>
 {% endblock %}
+
+{% block sidebar -%}{%- endblock %}
