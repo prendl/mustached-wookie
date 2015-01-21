@@ -7,16 +7,22 @@
 {%- endblock %}
 
 {% block page_main_inner -%}
-
-
-          <div class="row">
-            <div id="nav_bread" class="col-sm-6">
-              <ol class="breadcrumb">
-                <li><a href="start.html">SC Tiengen</a></li>
-                <li><a href="inhalt.html">Mannschaften</a></li>
-              </ol>
-            </div>
-          </div>
-
+  {% block breadcrumb -%}
+    {% set menu = knp_menu_get('nav-breadcrumb') %}
+{#{ dump(menu) }#}
+    {% if menu.hasChildren %}
+<div class="row">
+  <div id="nav_bread" class="col-sm-6">
+    <ol class="breadcrumb">
+    {% block breadcrumb_inner -%}
+      {% for item in menu.children %}
+     <li><a href="{{ item.uri }}">{{ item.label }}</a></div>
+      {%- endfor %}
+    {%- endblock %}
+    </ol>
+  </div>
+</div>
+   {% endif %}
+  {%- endblock %}
 {{ sonata_block_render({'name': 'container'}, {'template': 'SCTiengenWebSiteBundle::container.html.twig'}) }}
 {%- endblock %}
