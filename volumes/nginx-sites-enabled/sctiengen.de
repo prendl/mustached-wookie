@@ -1,3 +1,8 @@
+upstream app {
+      server app:9000;
+      keepalive 2;
+}
+
 server {
         server_name sctiengen.de sct.rendl.net;
 
@@ -25,7 +30,8 @@ server {
                 set $path_info $fastcgi_path_info;
                 fastcgi_param PATH_INFO $path_info;
                 include fastcgi.conf;
-                fastcgi_pass app:9000;
+                fastcgi_pass app;
+                fastcgi_keep_conn on;
         }
 
         location ~ /\.ht {
