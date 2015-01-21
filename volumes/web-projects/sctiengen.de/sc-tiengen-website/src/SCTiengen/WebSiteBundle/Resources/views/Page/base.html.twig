@@ -84,11 +84,15 @@
     {% block footer -%}
     <div id="page_footer">
       <div class="container">
-        {% block footer_inner -%}
         <div class="item text-muted">© SC Freiburg-Tiengen e.V.</div>
-        <div class="item"><a>Impressum</a></div>
-        <div class="item"><a>Datenschutz</a></div>
-        {%- endblock %}
+        {% set menu = knp_menu_get('nav-footer') %}
+        {% if menu.hasChildren %}
+          {% block footer_inner -%}
+            {% for item in menu.children %}
+        <div class="item"><a href="{{ item.uri }}">{{ item.label }}</a></div>
+            {%- endfor %}
+          {%- endblock %}
+        {% endif %}
         <div id="socialshareprivacy"></div>
       </div>
     </div>
