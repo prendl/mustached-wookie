@@ -8,21 +8,21 @@
 
 {% block page_main_inner -%}
   {% block breadcrumb -%}
-    {% set menu = knp_menu_get('nav-breadcrumb') %}
-{#{ dump(menu) }#}
-    {% if menu.hasChildren %}
+    {% set item = knp_menu_get('nav-breadcrumb') %}
 <div class="row">
   <div id="nav_bread" class="col-sm-6">
     <ol class="breadcrumb">
     {% block breadcrumb_inner -%}
-      {% for item in menu.children %}
-     <li><a href="{{ item.uri }}">{{ item.label }}</a></div>
+      {% for item in item.children %}
+        {% if item.isCurrent() %}
+     <li><a href="{{ item.uri }}">{{ item.label }}</a></li>
+     {{ block('breadcrumb_inner') }}
+        {% endif %}
       {%- endfor %}
     {%- endblock %}
     </ol>
   </div>
 </div>
-   {% endif %}
   {%- endblock %}
 {{ sonata_block_render({'name': 'container'}, {'template': 'SCTiengenWebSiteBundle::container.html.twig'}) }}
 {%- endblock %}

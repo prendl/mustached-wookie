@@ -1,7 +1,4 @@
 services:
-#    sc_tiengen_web_site.example:
-#        class: SCTiengen\WebSiteBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
     sctiengen_website.phpcr.initializer:
         class: Doctrine\Bundle\PHPCRBundle\Initializer\GenericInitializer
         arguments:
@@ -15,4 +12,11 @@ services:
             - "sctiengen_website.block.markdown"
             - "@templating"
         tags:
-            - {name: "sonata.block"}
+            - { name: "sonata.block" }
+    sctiengen_website.menu.voter:
+        class: SCTiengen\WebSiteBundle\Menu\CurrentMenuItemVoter
+        calls:
+            - [ setRequestStack, [ "@request_stack" ] ]
+        tags:
+            - { name: "cmf_menu.voter" }
+
