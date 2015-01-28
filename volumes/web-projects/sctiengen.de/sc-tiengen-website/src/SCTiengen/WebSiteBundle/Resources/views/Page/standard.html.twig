@@ -9,6 +9,7 @@
 {% block page_main_inner -%}
   {% block breadcrumb -%}
     {% set item = knp_menu_get('nav-breadcrumb') %}
+    {% if item.hasChildren %}
 <div class="row">
   <div id="nav_bread" class="col-sm-6">
     <ol class="breadcrumb">
@@ -23,6 +24,7 @@
     </ol>
   </div>
 </div>
+    {% endif %}
   {%- endblock %}
 {{ sonata_block_render({'name': 'container'}, {'template': 'SCTiengenWebSiteBundle::container.html.twig'}) }}
 {%- endblock %}

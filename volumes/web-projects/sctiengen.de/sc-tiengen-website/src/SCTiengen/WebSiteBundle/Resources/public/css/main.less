@@ -116,24 +116,38 @@ body {
     margin: 15px auto 15px;
     position: relative;
 
+    .bg {
+      background-image: url('../images/page-bg-grass.jpg');
+      background-size: 50px 50px;
+      height: 100%;
+      width: 100%;
+    }
+
     span {
-        background-color: fadeout(@color-blue, 30%);
-        bottom: 0;
-        display: block;
-        padding: 3% 0;
-        position: absolute;
-        text-align: center;
-        width: 100%;
-        &:hover {
-          background-color: fadeout(#FFF, 30%);
-          a {
-            color: @color-blue;
-          }
-        }
+      background-color: fadeout(@color-blue, 30%);
+      bottom: 0;
+      display: block;
+      padding: 3% 0;
+      position: absolute;
+      text-align: center;
+      width: 100%;
       a {
         color: #FFFFFF;
         font-size: 120%;
         font-weight: bold;
+      }
+    }
+    &:hover {
+      .fg {
+        background-color: rgba(17, 90, 161, 0.7);
+        cursor: pointer;
+      }
+      span {
+        background-color: fadeout(#FFF, 30%);
+        a {
+          color: @color-blue;
+          text-decoration: underline;
+        }
       }
     }
   }
@@ -178,6 +192,7 @@ body {
       }
 
       li {
+        background-color: rgba(51, 51, 51, 0.8);
         border: 0 solid @page-border-color - #111;
         border-width: 0 1px 1px 1px;
         display: block;
@@ -197,11 +212,11 @@ body {
           display: block;
           font-size: 120%;
           font-weight: bold;
+          height: 100%;
           margin: 0;
           position: absolute;
           text-align: center;
           width: 100%;
-          height: 100%;
           color: transparent;
           font: 0px/0 a;
           text-shadow: none;
@@ -209,28 +224,39 @@ body {
         &:first-child {
           border-top-width: 1px;
         }
+
+        &:hover {
+          background-color: rgba(17, 90, 161, 0.8);
+          cursor: pointer;
+
+          &.tile {
+            background-position: 0 1px;
+          }
+        }
       }
     }
   }
 }
 
-.tile {
+.tile .fg {
   background-size: 100% 100%;
+  height: 100%;
+  width: 100%;
 }
-.tile.nav-1 {
-  background-image: url("../images/kachel1.jpg");
+.tile.nav-mannschaften .fg {
+  background-image: url('../images/mannschaften.svg');
 }
-.tile.nav-2 {
-  background-image: url("../images/kachel2.jpg");
+.tile.nav-termine .fg {
+  background-image: url('../images/termine.svg');
 }
-.tile.nav-3 {
-  background-image: url("../images/kachel3.jpg");
+.tile.nav-verein .fg {
+  background-image: url('../images/verein.svg');
 }
-.tile.nav-4 {
-  background-image: url("../images/kachel4.jpg");
+.tile.nav-unterstuetzer .fg {
+  background-image: url('../images/unterstuetzer.svg');
 }
-.tile.nav-5 {
-  background-image: url("../images/kachel5.jpg");
+.tile.nav-mitteilungen .fg {
+  background-image: url('../images/mitteilungen.svg');
 }
 
 .jumbotron {

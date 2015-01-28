@@ -1,5 +1,5 @@
 {% block container %}
   {% for childBlock in block.children %}
-	{{ sonata_block_render(childBlock, {'template': 'SCTiengenWebSiteBundle:Blocks:' ~ childBlock.name ~ '.html.twig'}) }}  
+	{{ sonata_block_render(childBlock, {'template': 'SCTiengenWebSiteBundle:Blocks:' ~ childBlock.name|split('_')|first ~ '.html.twig'}) }}  
   {% endfor %}
 {% endblock %}

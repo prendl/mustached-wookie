@@ -1,6 +1,6 @@
 {% set subMenu = knp_menu_get('nav-main', [menu|split('/')|last]) %}
 {% if subMenu.hasChildren %}
-<nav>
+<nav role="navigation">
   <div class="row">
     {% for list in subMenu.children|batch((subMenu.children|length / 2)|round(0, 'ceil')) %}
     <div class="col-xs-12 col-sm-6 col-md-5 col-md-offset-1">

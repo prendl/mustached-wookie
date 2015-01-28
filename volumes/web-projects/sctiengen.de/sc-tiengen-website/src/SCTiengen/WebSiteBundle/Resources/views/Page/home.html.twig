@@ -4,32 +4,26 @@
 
 {% block page_main_inner %}
 {{ sonata_block_render({'name': 'container'}, {'template': 'SCTiengenWebSiteBundle::container.html.twig'}) }}
+  {% set subMenu = knp_menu_get('nav-main') %}
+  {% if subMenu.hasChildren %}
 <nav role="navigation">
+    {% for list in subMenu.children|slice(0, 4)|batch(2) %}
   <div class="row">
-    <div class="col-xs-12 col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-3">
-      <section class="tile nav-1">
-        <span><a href="inhalt.html">Mannschaften</a></span>
+      {% for item in list %}
+    <div class="col-xs-12 col-sm-4 col-md-3{% if loop.index == 0 %} col-sm-offset-2 col-md-offset-3{% endif %}">
+      <section class="tile nav-{{ item.name }}">
+        <div class="bg">
+          <div class="fg">
+            <span><a href="{{ item.uri }}">{{ item.label }}</a></span>
+          </div>
+        </div>
       </section>
     </div>
-    <div class="col-xs-12 col-sm-4 col-md-3">
-      <section class="tile nav-2">
-        <span><a>Termine</a></span>
-      </section>
-    </div>
+      {% endfor %}
   </div>
-  <div class="row">
-    <div class="col-xs-12 col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-3">
-      <section class="tile nav-3">
-        <span><a>Verein</a></span>
-      </section>
-    </div>
-    <div class="col-xs-12 col-sm-4 col-md-3">
-      <section class="tile nav-4">
-        <span><a>Unterstützer</a></span>
-      </section>
-    </div>
-  </div>
+    {% endfor %}
 </nav>
+  {% endif %}
 {% endblock %}
 
 {% block sidebar -%}{%- endblock %}
