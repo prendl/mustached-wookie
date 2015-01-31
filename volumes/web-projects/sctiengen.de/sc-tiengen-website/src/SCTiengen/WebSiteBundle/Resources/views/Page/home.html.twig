@@ -10,7 +10,7 @@
     {% for list in subMenu.children|slice(0, 4)|batch(2) %}
   <div class="row">
       {% for item in list %}
-    <div class="col-xs-12 col-sm-4 col-md-3{% if loop.index == 0 %} col-sm-offset-2 col-md-offset-3{% endif %}">
+    <div class="col-xs-12 col-sm-4 col-md-3{% if loop.index == 1 %} col-sm-offset-2 col-md-offset-3{% endif %}">
       <section class="tile nav-{{ item.name }}">
         <div class="bg">
           <div class="fg">
