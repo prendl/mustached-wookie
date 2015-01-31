@@ -1,0 +1,11 @@
+{% extends "SCTiengenWebSiteBundle:Blocks:row.html.twig" %}
+
+{% if block.filter %}
+    {% set filter = block.filter %}
+{% else %}
+    {% set filter = "cmf_block" %}
+{% endif %}
+
+{% block row_inner %}
+<img src="{{ block.image.id | imagine_filter(filter) }}" alt="{{ block.label }}"/>
+{% endblock %}

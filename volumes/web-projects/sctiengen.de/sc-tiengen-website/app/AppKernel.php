@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new Symfony\Cmf\Bundle\CoreBundle\CmfCoreBundle(),
             new Symfony\Cmf\Bundle\ContentBundle\CmfContentBundle(),
             new Symfony\Cmf\Bundle\RoutingBundle\CmfRoutingBundle(),
+            new Symfony\Cmf\Bundle\MediaBundle\CmfMediaBundle(),
 
             new Symfony\Cmf\Bundle\BlockBundle\CmfBlockBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
@@ -40,6 +41,7 @@ class AppKernel extends Kernel
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Sonata\DoctrinePHPCRAdminBundle\SonataDoctrinePHPCRAdminBundle(),
             
+            new Sonata\jQueryBundle\SonatajQueryBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new Symfony\Cmf\Bundle\TreeBrowserBundle\CmfTreeBrowserBundle(),
 
@@ -47,6 +49,7 @@ class AppKernel extends Kernel
             new Symfony\Cmf\Bundle\SeoBundle\CmfSeoBundle(),
 
             new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle(),
 
             // Remove this Bundle when using the SE as the basis for a new project
             new Acme\DemoBundle\AcmeDemoBundle(),
