@@ -3,7 +3,7 @@
 {% use "SCTiengenWebSiteBundle::blocks.html.twig" %}
 
 {% block page_main_inner %}
-{{ sonata_block_render({'name': 'container'}, {'template': 'SCTiengenWebSiteBundle::container.html.twig'}) }}
+{{ sonata_block_render({'name': '/cms/content/home/container'}, {'template': 'SCTiengenWebSiteBundle::container.html.twig'}) }}
   {% set subMenu = knp_menu_get('nav-main') %}
   {% if subMenu.hasChildren %}
 <nav role="navigation">
@@ -26,4 +26,4 @@
   {% endif %}
 {% endblock %}
 
-{% block sidebar -%}{%- endblock %}
+{% block sidebar_left -%}{%- endblock %}
