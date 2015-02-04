@@ -3,7 +3,7 @@
 namespace SCTiengen\WebSiteBundle\Document;
 
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
-
+use SCTiengen\WebSiteBundle\Document\BootstrapHelperTrait;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\AbstractBlock;
 
 /**
@@ -11,6 +11,8 @@ use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\AbstractBlock;
  */
 class MarkdownBlock extends AbstractBlock
 {
+	use BootstrapHelperTrait;
+	
 	/**
 	 * @PHPCR\String(nullable=true)
 	 */

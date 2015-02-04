@@ -19,3 +19,5 @@ services:
             - 'SonataAdminBundle:CRUD'
         calls:
             - [ setTranslationDomain, [SCTiengenWebSiteBundle]]
+    sctiengen_website.admin_extension.bootstrap_helper:
+        class: SCTiengen\WebSiteBundle\Admin\Extension\BootstrapHelperExtension
