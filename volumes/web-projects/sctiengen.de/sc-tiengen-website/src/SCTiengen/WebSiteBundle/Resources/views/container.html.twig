@@ -1,6 +1,6 @@
 {% block container %}
   {% for childBlock in block.children %}
-    {% set blockType = childBlock.subtype|default('') %}
+    {% set blockType = childBlock.blockTemplate|default('') %}
     {% if childBlock.name in ['page-head', 'submenu'] %}
       {% set blockType = childBlock.name %}
     {% endif %}
@@ -9,6 +9,5 @@
     {% else %}
         {{ sonata_block_render(childBlock, {'template': 'SCTiengenWebSiteBundle:Blocks:' ~ blockType ~ '.html.twig'}) }}
     {% endif %}
-        {#{ sonata_block_render(childBlock, {'template': 'SCTiengenWebSiteBundle:Blocks:' ~ childBlock.name|split('_')|first ~ '.html.twig'}) }#}
   {% endfor %}
 {% endblock %}

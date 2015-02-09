@@ -7,5 +7,5 @@
 {% endif %}
 
 {% block row_inner %}
-<img src="{{ block.image.id | imagine_filter(filter) }}" alt="{{ block.label }}"/>
+<img src="{{ cmf_media_display_url(block.image) }}" alt="{{ block.label }}" class="fill-block"/>
 {% endblock %}

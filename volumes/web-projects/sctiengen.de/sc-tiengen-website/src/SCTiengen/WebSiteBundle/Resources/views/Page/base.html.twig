@@ -4,7 +4,8 @@
     {% block head_inner -%}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title_inner %}SC Tiengen{% endblock %}</title>
+    {{ sonata_seo_title() }}
+    {{ sonata_seo_metadatas() }}
     {% block css_includes_header -%}
     <link href="{{ asset('bundles/sctiengenwebsite/css/fonts.css') }}" rel="stylesheet">
     <link href="{{ asset('bundles/sctiengenwebsite/css/bootstrap.min.css') }}" rel="stylesheet">

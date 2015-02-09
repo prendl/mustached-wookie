@@ -9,9 +9,9 @@ use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\AbstractBlock;
 /**
  * @PHPCR\Document(referenceable=true)
  */
-class MarkdownBlock extends AbstractBlock
+class MarkdownBlock extends AbstractBlock implements RenderHinted
 {
-	use BootstrapHelperTrait;
+	use RenderHintsTrait;
 	
 	/**
 	 * @PHPCR\String(nullable=true)

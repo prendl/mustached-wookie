@@ -29,9 +29,6 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
-    form:
-        resources:
-            - 'CmfMediaBundle:Form:fields.html.twig'
 
 # Assetic Configuration
 assetic:
@@ -77,6 +74,11 @@ doctrine_cache:
         phpcr_nodes:
             type: file_system
 
+cmf_block:
+    persistence:
+        phpcr:
+            imagine_document_class:   SCTiengen\WebSiteBundle\Document\ImageBlock
+            
 cmf_content:
     persistence:
         phpcr:
@@ -155,9 +157,12 @@ sonata_admin:
         cmf_menu.admin_extension.menu_options:
             implements:
                 - Symfony\Cmf\Bundle\MenuBundle\Model\MenuOptionsInterface
-        sctiengen_website.admin_extension.bootstrap_helper:
-            admins:
-                - sctiengen_website.admin.markdown
+        sctiengen_website.admin_extension.renderhints:
+            implements:
+                - SCTiengen\WebSiteBundle\Document\RenderHinted
+        cmf_seo.admin_extension:
+            implements:
+                - Symfony\Cmf\Bundle\SeoBundle\SeoAwareInterface
     dashboard:
         blocks:
             - { position: left, type: sonata_admin_doctrine_phpcr.tree_block }
@@ -206,6 +211,7 @@ sonata_doctrine_phpcr_admin:
         Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SlideshowBlock:
             valid_children:
                 - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ImagineBlock
+                - SCTiengen\WebSiteBundle\Document\ImageBlock
         Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ImagineBlock:
             valid_children: []
         Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ContainerBlock:
@@ -214,11 +220,14 @@ sonata_doctrine_phpcr_admin:
                 - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ActionBlock
                 - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ContainerBlock
                 - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ImagineBlock
+                - SCTiengen\WebSiteBundle\Document\ImageBlock
                 - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\MenuBlock
                 - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ReferenceBlock
                 - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock
                 - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\StringBlock
         Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ImagineBlock:
+            valid_children: []
+        SCTiengen\WebSiteBundle\Document\ImageBlock:
             valid_children: []
         Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\MenuBlock:
             valid_children: []
@@ -252,3 +261,4 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
