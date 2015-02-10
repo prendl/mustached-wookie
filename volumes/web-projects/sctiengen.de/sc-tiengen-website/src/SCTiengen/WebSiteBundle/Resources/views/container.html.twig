@@ -4,10 +4,12 @@
     {% if childBlock.name in ['page-head', 'submenu'] %}
       {% set blockType = childBlock.name %}
     {% endif %}
+<div class="row">
     {%if blockType is empty %}
         {{ sonata_block_render(childBlock) }}
     {% else %}
         {{ sonata_block_render(childBlock, {'template': 'SCTiengenWebSiteBundle:Blocks:' ~ blockType ~ '.html.twig'}) }}
     {% endif %}
+</div>
   {% endfor %}
 {% endblock %}
