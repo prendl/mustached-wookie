@@ -98,16 +98,14 @@ body {
 #page_main .tile span {
   background-color: rgba(17, 90, 161, 0.7);
   bottom: 0;
+  color: #FFFFFF;
+  font-size: 120%;
+  font-weight: bold;
   display: block;
   padding: 3% 0;
   position: absolute;
   text-align: center;
   width: 100%;
-}
-#page_main .tile span a {
-  color: #FFFFFF;
-  font-size: 120%;
-  font-weight: bold;
 }
 #page_main .tile:hover .fg {
   background-color: rgba(17, 90, 161, 0.7);
@@ -115,8 +113,6 @@ body {
 }
 #page_main .tile:hover span {
   background-color: rgba(255, 255, 255, 0.7);
-}
-#page_main .tile:hover span a {
   color: #115aa1;
   text-decoration: underline;
 }
@@ -200,6 +196,7 @@ body {
 }
 .tile .fg {
   background-size: 100% 100%;
+  display: block;
   height: 100%;
   width: 100%;
 }

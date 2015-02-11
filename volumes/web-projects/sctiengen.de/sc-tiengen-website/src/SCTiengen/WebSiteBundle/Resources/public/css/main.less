@@ -126,16 +126,14 @@ body {
     span {
       background-color: fadeout(@color-blue, 30%);
       bottom: 0;
+      color: #FFFFFF;
       display: block;
+      font-size: 120%;
+      font-weight: bold;
       padding: 3% 0;
       position: absolute;
       text-align: center;
       width: 100%;
-      a {
-        color: #FFFFFF;
-        font-size: 120%;
-        font-weight: bold;
-      }
     }
     &:hover {
       .fg {
@@ -144,10 +142,8 @@ body {
       }
       span {
         background-color: fadeout(#FFF, 30%);
-        a {
-          color: @color-blue;
-          text-decoration: underline;
-        }
+        color: @color-blue;
+        text-decoration: underline;
       }
     }
   }
@@ -240,6 +236,7 @@ body {
 
 .tile .fg {
   background-size: 100% 100%;
+  display: block;
   height: 100%;
   width: 100%;
 }
