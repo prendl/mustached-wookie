@@ -54,6 +54,7 @@ class AppKernel extends Kernel
             // Remove this Bundle when using the SE as the basis for a new project
             new Acme\DemoBundle\AcmeDemoBundle(),
             new SCTiengen\WebSiteBundle\SCTiengenWebSiteBundle(),
+            new SCTiengen\NewsBundle\SCTiengenNewsBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

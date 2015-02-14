@@ -1,3 +1,7 @@
+sc_tiengen_news:
+    resource: "@SCTiengenNewsBundle/Resources/config/routing.yml"
+    prefix:   /
+
 sc_tiengen_web_site:
     resource: "@SCTiengenWebSiteBundle/Resources/config/routing.yml"
     prefix:   /
