@@ -1,3 +1,7 @@
-sc_tiengen_news_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: SCTiengenNewsBundle:Default:index }
+sctiengen_news_list:
+    path:     /
+    defaults: { _controller: SCTiengenNewsBundle:Default:list }
+
+sctiengen_news_detail:
+    path:     /{name}
+    defaults: { _controller: SCTiengenNewsBundle:Default:detail }
