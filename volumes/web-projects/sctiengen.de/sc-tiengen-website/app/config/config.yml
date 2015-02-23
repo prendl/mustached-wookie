@@ -54,6 +54,13 @@ doctrine:
         password: "%database_password%"
         charset:  UTF8
         path:     "%database_path%"
+    orm:
+        default_entity_manager: default
+        entity_managers:
+            default:
+                connection: default
+                mappings:
+                    SCTiengenNewsBundle:  ~
 
 # Doctrine PHPCR-ODM configuration
 doctrine_phpcr:
