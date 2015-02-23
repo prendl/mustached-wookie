@@ -1,10 +1,11 @@
-sc_tiengen_news:
-    resource: "@SCTiengenNewsBundle/Resources/config/routing.yml"
-    prefix:   /
-
-sc_tiengen_web_site:
+sctiengen_web_site:
     resource: "@SCTiengenWebSiteBundle/Resources/config/routing.yml"
     prefix:   /
+
+sctiengen_news:
+    resource: "@SCTiengenNewsBundle/DefaultController/"
+    type:     annotation
+    prefix:   /mitteilungen
 
 # AcmeDemoBundle routes (to be removed)
 _demo:

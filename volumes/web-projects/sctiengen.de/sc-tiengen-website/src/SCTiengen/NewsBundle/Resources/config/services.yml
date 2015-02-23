@@ -1,4 +1,6 @@
 services:
-#    sc_tiengen_news.example:
-#        class: SCTiengen\NewsBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    sctiengen_news.admin.news_message:
+        class: SCTiengen\NewsBundle\Admin\NewsMessageAdmin
+        arguments: [null, SCTiengen\NewsBundle\Entity\NewsMessage, SCTiengenNewsBundle:NewsMessageAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: news, label: news_message }
