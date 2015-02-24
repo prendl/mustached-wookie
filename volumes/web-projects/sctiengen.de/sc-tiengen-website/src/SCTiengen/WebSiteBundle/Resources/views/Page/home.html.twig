@@ -24,6 +24,9 @@
     {% endfor %}
 </nav>
   {% endif %}
+
+{{ render(controller('SCTiengenNewsBundle:Default:topNews')) }}
+
 {% endblock %}
 
 {% block sidebar_left -%}{%- endblock %}

@@ -1,0 +1,19 @@
+{% extends "SCTiengenWebSiteBundle:Page:standard.html.twig" %}
+
+{% block page_content -%}
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+    <h1>Mitteilungen</h2>
+    <ol>
+      {% for message in messages %}
+      <li>
+        <h3>
+          <a href="{{ path('news_detail', {'id': message.id}) }}">{{ message.title }}</a>
+        </h3>
+        <p>{{ message.summary }}</p>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+</div>
+{%- endblock %}

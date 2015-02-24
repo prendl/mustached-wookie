@@ -26,5 +26,8 @@
 </div>
     {% endif %}
   {%- endblock %}
-{{ sonata_block_render({'name': 'container'}, {'template': 'SCTiengenWebSiteBundle::container.html.twig'}) }}
+  {% block page_content -%}
+    {{ sonata_block_render({'name': 'container'}, {'template': 'SCTiengenWebSiteBundle::container.html.twig'}) }}
+  {%- endblock %}
 {%- endblock %}
+

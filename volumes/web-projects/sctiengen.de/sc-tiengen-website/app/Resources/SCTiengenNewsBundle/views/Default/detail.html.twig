@@ -1,0 +1,6 @@
+{% extends "SCTiengenWebSiteBundle:Page:standard.html.twig" %}
+
+{% block page_content -%}
+<h1>{{ message.title }}</h1>
+<p>{{ message.content|markdown }}</p>
+{%- endblock %}
