@@ -40,7 +40,8 @@ class AppKernel extends Kernel
 
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Sonata\DoctrinePHPCRAdminBundle\SonataDoctrinePHPCRAdminBundle(),
-            
+            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
+
             new Sonata\jQueryBundle\SonatajQueryBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new Symfony\Cmf\Bundle\TreeBrowserBundle\CmfTreeBrowserBundle(),

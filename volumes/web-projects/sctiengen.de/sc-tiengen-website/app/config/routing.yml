@@ -3,7 +3,7 @@ sctiengen_web_site:
     prefix:   /
 
 sctiengen_news:
-    resource: "@SCTiengenNewsBundle/DefaultController/"
+    resource: "@SCTiengenNewsBundle/Controller/"
     type:     annotation
     prefix:   /mitteilungen
 
