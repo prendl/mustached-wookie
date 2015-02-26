@@ -10,7 +10,7 @@
 @page-border-color: #CDCDCD;
 @page-padding: 15px;
 @page-header-h: 50px;
-@page-footer-h: 27px;
+@page-footer-h: 34px;
 @page-footer-distance-top: 9px;
 @page-footer-distance-bottom: 5px;
 
@@ -155,7 +155,6 @@ body {
   border-width: 1px 0;
   bottom: @page-footer-distance-bottom;
   font-size: 75%;
-  height: @page-footer-h;
   padding: 2px 0;
   position: fixed;
   width: 100%;
@@ -266,14 +265,16 @@ body {
   font-size: 150%;
 }
 
-#socialshareprivacy {
+.shariff {
+  padding-left: 20px;
   float: right;
-
-  .social_share_privacy_area {
-    margin: 0 !important;
-  }
-  .social_share_privacy_area li.settings_info {
-    top: 0;
+  
+  li {
+    height: 25px;
+    
+    a {
+      line-height: 25px;
+    }
   }
 }
 
