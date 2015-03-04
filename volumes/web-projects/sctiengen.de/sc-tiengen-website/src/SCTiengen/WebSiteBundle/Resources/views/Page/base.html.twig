@@ -41,6 +41,9 @@
     {% block footer -%}
     <div id="page_footer">
       <div class="container">
+      {% if not(is_granted('IS_AUTHENTICATED_FULLY')) %}
+        {{ render(controller('SCTiengenWebSiteBundle:Security:login')) }}
+      {% endif %}
         <div class="item text-muted">© SC Freiburg-Tiengen e.V.</div>
         {% set menu = knp_menu_get('nav-footer') %}
         {% if menu.hasChildren %}
@@ -49,6 +52,11 @@
         <div class="item"><a href="{{ item.uri }}">{{ item.label }}</a></div>
             {%- endfor %}
           {%- endblock %}
+        {% endif %}
+        {% if is_granted('ROLE_USER') %}
+        <div class="item"><a href="{{ path('logout') }}">Logout</a></div>
+        {% else %}
+        <div class="item"><a href="#" class="trigger-toggle-login-box">Login</a></div>
         {% endif %}
         <div class="shariff"></div>
       </div>
@@ -62,3 +70,4 @@
     {%- endblock %}
   </body>
 </html>
+

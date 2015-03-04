@@ -1,0 +1,14 @@
+<div id="login-box"{% if error is defined and not(error is empty) %} class="open"{% endif %}>
+  <form action="{{ path('login_check') }}" method="post" class="form-inline">
+    <div class="form-group">
+      <input class="form-control" id="field-username" placeholder="Benutzername" name="_username" type="text"/>
+    </div>
+  <div class="form-group">
+    <input class="form-control" id="field-password" placeholder="Passwort" name="_password" type="password"/>
+  </div>
+  <button type="submit" class="btn btn-default">Login</button>
+</form>
+{% if error is defined and not(error is empty) %}
+<p class="text-danger text-right">{{ error.message }}</p>
+{% endif %}
+</div>

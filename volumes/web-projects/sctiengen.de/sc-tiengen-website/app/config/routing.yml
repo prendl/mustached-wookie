@@ -46,3 +46,10 @@ cmf_media_file:
 cmf_media_image:
     resource: "@CmfMediaBundle/Resources/config/routing/image.xml"
 
+login:
+    path: /login
+    defaults: { _controller: SCTiengenWebSiteBundle:Security:login }
+login_check:
+    path: /login_check
+logout:
+    path: /logout

@@ -1,5 +1,6 @@
 $(document).ready(function() {
-  $('#socialshareprivacy').socialSharePrivacy({
-    'css_path': 'css/socialshareprivacy.css'
+  $('.trigger-toggle-login-box').on('click', function($event) {
+	  $event.preventDefault();
+	  $('#login-box').toggle();
   });
 });

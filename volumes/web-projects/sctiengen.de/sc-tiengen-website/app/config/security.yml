@@ -1,33 +1,34 @@
+imports:
+    - { resource: users.yml }
+
 security:
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
+        Symfony\Component\Security\Core\User\User:
+            algorithm: bcrypt
+            cost: 12
 
     role_hierarchy:
-        ROLE_ADMIN:       [ROLE_USER, ROLE_CAN_UPLOAD_FILE]
-        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_EDITOR:      [ROLE_USER, ROLE_CAN_UPLOAD_FILE]
+        ROLE_ADMIN:       [ROLE_EDITOR]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
         in_memory:
             memory:
-                users:
-                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+                ~
 
     firewalls:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        default:
+        site:
             pattern: ^/
             anonymous: ~
-            form_login:
-                login_path: _demo_login
-                check_path: _demo_login_check
-                default_target_path: /demo
-                always_use_default_target_path: true
+            form_login: ~
             logout:
-                path: /demo/logout
+                path:   /logout
+                target: /
 
     access_control:
-        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        - { path: ^/admin, roles: ROLE_ADMIN }
