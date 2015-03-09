@@ -4,7 +4,7 @@ ENV LC_ALL=C.UTF-8
 
 RUN \
   apt-get update \
-  && apt-get install -y --no-install-recommends git
+  && apt-get install -y --no-install-recommends git libicu52 libpng12-0 libgd3
 
 RUN \
   mkdir -p /usr/local/bin \
