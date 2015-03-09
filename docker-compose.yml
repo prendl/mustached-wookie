@@ -1,0 +1,51 @@
+# docker build -t sct_custom/dbdata images/dbdata
+dbData:
+    image: sct_custom/dbdata
+    hostname: dbdata
+
+db:
+    image: dockerfile/mariadb
+    hostname: db
+    tty: true
+    restart: always
+    environment:
+        - "LC_ALL=C.UTF-8"
+    volumes_from:
+        - dbData
+    ports:
+        - "9306:3306"
+
+web:
+    image: dockerfile/nginx
+    hostname: web
+    tty: true
+    restart: always
+    environment:
+        - "LC_ALL=C.UTF-8"
+    volumes: 
+        - "volumes/nginx-sites-enabled:/etc/nginx/sites-enabled"
+    volumes_from:
+        - app
+    links:
+        - "app:app"
+    ports:
+        - "9080:80"
+        - "9081:443"
+
+#docker build -t sct_custom/app-php --no-cache=true images/app-php
+app:
+    image: sct_custom/app-php
+    hostname: app
+    tty: true
+    restart: always
+    environment:
+        - "LC_ALL=C.UTF-8"
+    volumes:
+        - "volumes/web-projects:/var/www"
+        - "volumes/etc-php:/usr/local/etc/php"
+        - "volumes/php-extensions:/usr/local/lib/php/extensions"
+    links:
+        - "db:db"
+    ports:
+        - "8000:8000"
+
