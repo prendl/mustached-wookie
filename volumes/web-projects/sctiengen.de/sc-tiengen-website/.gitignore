@@ -11,6 +11,5 @@
 /bin/
 /composer.phar
 *.sqlite
-composer.lock
 app/check.php
 app/SymfonyRequirements.php
