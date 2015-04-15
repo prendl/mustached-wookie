@@ -121,6 +121,10 @@ cmf_routing:
                 route_basepath: /cms/routes
                 use_sonata_admin: true
 
+sonata_seo:
+    page:
+        title: SC Freiburg-Tiengen
+
 cmf_seo:
     title: %%content_title%% - SC Freiburg-Tiengen
     description: %%content_description%%

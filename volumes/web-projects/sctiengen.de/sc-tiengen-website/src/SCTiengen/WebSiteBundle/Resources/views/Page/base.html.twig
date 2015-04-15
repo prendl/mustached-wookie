@@ -26,8 +26,12 @@
         {% block page_header -%}
         <div id="page_header">
           {% block page_header_inner -%}
-          <img id="logo" src="{{ asset('bundles/sctiengenwebsite/images/sct-vereinswappen.png') }}" alt="SC Tiengen" width="148" height="148">
-          <img id="logo-50" src="{{ asset('bundles/sctiengenwebsite/images/50-jahre-sc-tiengen-logo.png') }}" alt="50 Jahre SC Tiengen" width="213" height="56">
+          <a href="{{ path('sctiengen_website_homepage') }}">
+            <img id="logo" src="{{ asset('bundles/sctiengenwebsite/images/sct-vereinswappen.png') }}" alt="Sport-Club Freiburg-Tiengen" width="148" height="148"/>
+          </a>
+          <a href="{{ path('/cms/routes/verein/geschichte') }}">
+            <img id="logo-50" src="{{ asset('bundles/sctiengenwebsite/images/50-jahre-sc-tiengen-logo.png') }}" alt="50 Jahre Sport-Club Freiburg-Tiengen" width="213" height="56"/>
+          </a>
           {%- endblock %}
         </div>
         {%- endblock %}
