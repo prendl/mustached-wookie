@@ -1,10 +1,10 @@
-# docker build -t sct_custom/dbdata images/dbdata
+#docker build -t sct_custom/dbdata images/dbdata
 dbData:
     image: sct_custom/dbdata
     hostname: dbdata
 
 db:
-    image: dockerfile/mariadb
+    image: mariadb
     hostname: db
     tty: true
     restart: always
@@ -15,8 +15,9 @@ db:
     ports:
         - "9306:3306"
 
+#docker build -t sct_custom/nginx images/nginx
 web:
-    image: dockerfile/nginx
+    image: sct_custom/nginx
     hostname: web
     tty: true
     restart: always
@@ -27,12 +28,12 @@ web:
     volumes_from:
         - app
     links:
-        - "app:app"
+        - app
     ports:
         - "9080:80"
         - "9081:443"
 
-#docker build -t sct_custom/app-php --no-cache=true images/app-php
+#docker build -t sct_custom/app-php images/app-php
 app:
     image: sct_custom/app-php
     hostname: app
@@ -45,7 +46,7 @@ app:
         - "volumes/etc-php:/usr/local/etc/php"
         - "volumes/php-extensions:/usr/local/lib/php/extensions"
     links:
-        - "db:db"
+        - db
     ports:
         - "8000:8000"
 

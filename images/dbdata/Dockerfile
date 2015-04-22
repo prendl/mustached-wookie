@@ -1,4 +1,4 @@
-FROM scratch
+FROM cogniteev/echo
 VOLUME /var/lib/mysql
 COPY true-asm /true
-CMD ["/true"]
+ENTRYPOINT ["/true"]
