@@ -4,7 +4,7 @@ upstream app {
 }
 
 server {
-        server_name sctiengen.de sct.rendl.net;
+        server_name sctiengen.de sct.rendl.net calgary.local;
 
         root /var/www/sctiengen.de/docroot;
 
