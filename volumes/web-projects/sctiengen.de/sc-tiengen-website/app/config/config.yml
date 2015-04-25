@@ -98,7 +98,7 @@ cmf_core:
         phpcr: true
         # if you want another basepath
         # basepath: /custom/basepath
-    publish_workflow: false
+    publish_workflow: true
 
 # Cmf Routing Configuration
 cmf_routing:
@@ -174,6 +174,13 @@ sonata_admin:
         cmf_seo.admin_extension:
             implements:
                 - Symfony\Cmf\Bundle\SeoBundle\SeoAwareInterface
+        cmf_core.admin_extension.publish_workflow.publishable:
+            implements:
+                - Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishableInterface
+        cmf_core.admin_extension.publish_workflow.time_period:
+            implements:
+                - Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishTimePeriodInterface
+
     dashboard:
         blocks:
             - { position: left, type: sonata_admin_doctrine_phpcr.tree_block }
