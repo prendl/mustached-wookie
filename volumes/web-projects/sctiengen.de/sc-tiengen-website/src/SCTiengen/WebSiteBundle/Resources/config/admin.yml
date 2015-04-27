@@ -9,6 +9,16 @@ services:
             - 'SonataAdminBundle:CRUD'
         calls:
             - [ setTranslationDomain, [SCTiengenWebSiteBundle]]
+    sctiengen_website.admin.download:
+        class: SCTiengen\WebSiteBundle\Admin\DownloadBlockAdmin
+        tags:
+            - { name: sonata.admin, manager_type: doctrine_phpcr, group: "Media", label: "Download-Block" }
+        arguments:
+            - ''
+            - SCTiengen\WebSiteBundle\Document\DownloadBlock
+            - 'SonataAdminBundle:CRUD'
+        calls:
+            - [ setTranslationDomain, [SCTiengenWebSiteBundle]]
     sctiengen_website.admin.page:
         class: SCTiengen\WebSiteBundle\Admin\PageAdmin
         tags:
