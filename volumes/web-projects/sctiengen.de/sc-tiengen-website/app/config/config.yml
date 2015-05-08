@@ -194,8 +194,6 @@ sonata_admin:
                     - sctiengen_website.admin.markdown
                     - cmf_block.imagine.imagine_admin
                     - cmf_block.imagine.slideshow_admin
-                    #- cmf_block.simple_admin
-                    #- cmf_block.string_admin
                     - cmf_block.menu_admin
                     - cmf_block.reference_admin
                     - cmf_block.action_admin
