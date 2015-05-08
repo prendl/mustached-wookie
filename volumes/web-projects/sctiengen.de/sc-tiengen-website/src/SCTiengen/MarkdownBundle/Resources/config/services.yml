@@ -1,0 +1,26 @@
+services:
+    sc_tiengen_markdown.parser:
+        class: SCTiengen\MarkdownBundle\Parser\Markdown
+        calls:
+            - [ setUrlFilter, [ "@sc_tiengen_markdown.url_filter" ] ]
+    
+    templating.helper.markdown:
+        class: SCTiengen\MarkdownBundle\Templating\MarkdownHelper
+        public: false
+        arguments: [ "@sc_tiengen_markdown.parser" ]
+        tags:
+            - { name: templating.helper, alias: markdown }
+    
+    twig.extension.exercise.twig:
+        class: SCTiengen\MarkdownBundle\Twig\Extension\MarkdownTwigExtension
+        public: false
+        arguments: [ "@templating.helper.markdown" ]
+        tags:
+            - { name: twig.extension }
+    
+    sc_tiengen_markdown.url_filter:
+        class: SCTiengen\MarkdownBundle\Doctrine\Phpcr\UrlFilter
+        public: false
+        arguments: [ "@cmf_core.templating.helper" ]
+        
+    
