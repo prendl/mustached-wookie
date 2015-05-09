@@ -15,8 +15,8 @@ class Markdown implements MarkdownParserInterface {
     }
     
     public function setUrlFilter(MarkdownUrlFilter $filterObj) {
-        $this->parser->url_filter_func = function($url) {
-            $filterObj->filterUrl($url);
+        $this->parser->url_filter_func = function($url) use (&$filterObj) {
+            return $filterObj->filterUrl($url);
         };
     }
     

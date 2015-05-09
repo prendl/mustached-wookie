@@ -21,6 +21,6 @@ services:
     sc_tiengen_markdown.url_filter:
         class: SCTiengen\MarkdownBundle\Doctrine\Phpcr\UrlFilter
         public: false
-        arguments: [ "@cmf_core.templating.helper" ]
+        arguments: [ "@router", "@doctrine_phpcr" ]
         
     
