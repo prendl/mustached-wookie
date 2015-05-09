@@ -19,4 +19,12 @@ services:
             - [ setRequestStack, [ "@request_stack" ] ]
         tags:
             - { name: "cmf_menu.voter" }
-
+    
+    sctiengen_website.form.type.download_file:
+        class: SCTiengen\WebSiteBundle\Form\Type\DownloadFileType
+        arguments:
+            - Symfony\Cmf\Bundle\MediaBundle\Doctrine\Phpcr\File
+            - "@cmf_media.upload_file_helper"
+        tags:
+            - { name: "form.type", alias: "download_file" }
+    

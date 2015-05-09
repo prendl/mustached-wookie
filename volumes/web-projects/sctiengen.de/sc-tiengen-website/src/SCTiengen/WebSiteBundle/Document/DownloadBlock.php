@@ -6,8 +6,8 @@ use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
 use PHPCR\NodeInterface;
 use Symfony\Cmf\Bundle\MediaBundle\Doctrine\Phpcr\File;
 use Symfony\Cmf\Bundle\MediaBundle\FileInterface;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\AbstractBlock;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @PHPCR\Document(referenceable=true)
@@ -20,12 +20,13 @@ class DownloadBlock extends AbstractBlock {
 	protected $label;
 	
 	/**
-	 * @var File \PHPCR\Child(cascade="persist")
+	 * @PHPCR\Child(nodeName="file", cascade="persist")
+	 * @var File
 	 */
 	protected $file;
 	
 	/**
-	 * @var \PHPCR\NodeInterface
+	 * @var NodeInterface
 	 */
 	protected $node;
 	

@@ -40,7 +40,7 @@ class DownloadBlockAdmin extends AbstractBlockAdmin
         $formMapper
             ->with('form.group_general')
                 ->add('label', 'text', array('required' => false))
-                ->add('file', 'file', array('required' => $fileRequired))
+                ->add('file', 'download_file', array('required' => $fileRequired))
                 ->add('position', 'hidden', array('mapped' => false))
             ->end();
 	}
