@@ -254,3 +254,6 @@ body {
   width: 100%;
 }
 
+.no-margin > h3 {
+  margin-top: 0;
+}
