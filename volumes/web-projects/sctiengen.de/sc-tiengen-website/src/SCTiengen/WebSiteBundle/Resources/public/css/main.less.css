@@ -238,8 +238,9 @@ body {
   font-size: 150%;
 }
 .shariff {
-  padding-left: 20px;
   float: right;
+  padding-left: 20px;
+  width: 400px;
 }
 .shariff li {
   height: 25px;
