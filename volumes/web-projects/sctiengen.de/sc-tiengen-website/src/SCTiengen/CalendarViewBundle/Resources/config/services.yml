@@ -1,0 +1,25 @@
+parameters:
+    calendar_service.app_name: "SCTiengenWebsite"
+    calendar_service.service_account_credentials: "%kernel.root_dir%/config/SCTiengenWebsite-82c53e2188ee.json"
+    calendar_service.calendar_list:
+        - "84d7dahjsphkfdp7a8vhlkqqrg@group.calendar.google.com"
+        - "jf34593fvkhugvi8m6s5gbgvh4@group.calendar.google.com"
+        - "cl9a1oatv1t4cldcmkfdh685uc@group.calendar.google.com"
+
+services:
+    sctiengen_calendar_view.calendar_service:
+        class: SCTiengen\CalendarViewBundle\Google\CalendarService
+        calls:
+            - [ setAppName, [ "%calendar_service.app_name%" ] ]
+            - [ setServiceAccountCredentialsFile, [ "%calendar_service.service_account_credentials%" ] ]
+    
+    sctiengen_calendar_view.entity_manager:
+        class: Doctrine\ORM\EntityManager
+        factory: [ "@doctrine", getManager ]
+    
+    sctiengen_calendar_view.calendar_proxy:
+        class: SCTiengen\CalendarViewBundle\Google\CalendarProxy
+        calls:
+            - [ setCalendarService, [ "@sctiengen_calendar_view.calendar_service" ] ]
+            - [ setEntityManager, [ "@sctiengen_calendar_view.entity_manager" ] ]
+    

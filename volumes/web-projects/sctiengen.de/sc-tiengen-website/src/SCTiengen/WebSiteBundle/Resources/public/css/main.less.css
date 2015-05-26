@@ -258,3 +258,56 @@ body {
 .no-margin > h3 {
   margin-top: 0;
 }
+
+.scroll-wrapper {
+  height: 200px;
+  overflow: hidden;
+  position: realtive;
+  width: 100%;
+}
+
+@media (min-width: 1200px) {
+  .scroll-wrapper {
+    height: 400px;
+  }
+}
+
+.scroll-wrapper .scroller {
+  position: absolute;
+  width: 100%;
+}
+
+.scroll-wrapper .list-group {
+  position: relative;
+  width: 100%;
+}
+
+.scroll-wrapper .list-group .list-group-item {
+  width: 100%;
+}
+
+.event-day {
+  font-size: 18px;
+}
+
+.event .title {
+  font-weight: bold;
+}
+
+.event .category {
+  float: right;
+  font-size: 13px;
+  padding: 1px 3px;
+}
+
+.event.event-category-training .category {
+  background-color: yellow;
+}
+
+.event.event-category-heimspiele .category {
+  background-color: blue;
+}
+
+.event.event-category-veranstaltungen .category {
+  background-color: red;
+}

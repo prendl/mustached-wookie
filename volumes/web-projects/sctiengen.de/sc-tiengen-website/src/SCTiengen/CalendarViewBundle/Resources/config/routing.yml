@@ -1,0 +1,3 @@
+sc_tiengen_calendar_view_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: SCTiengenCalendarViewBundle:Default:index }

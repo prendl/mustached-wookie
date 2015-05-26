@@ -51,10 +51,10 @@ class AppKernel extends Kernel
 
             new Liip\ImagineBundle\LiipImagineBundle(),
 
-            // Remove this Bundle when using the SE as the basis for a new project
             new SCTiengen\WebSiteBundle\SCTiengenWebSiteBundle(),
             new SCTiengen\NewsBundle\SCTiengenNewsBundle(),
-            new SCTiengen\MarkdownBundle\SCTiengenMarkdownBundle()
+            new SCTiengen\MarkdownBundle\SCTiengenMarkdownBundle(),
+            new SCTiengen\CalendarViewBundle\SCTiengenCalendarViewBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

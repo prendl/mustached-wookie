@@ -1,3 +1,7 @@
+sc_tiengen_calendar_view:
+    resource: "@SCTiengenCalendarViewBundle/Resources/config/routing.yml"
+    prefix:   /
+
 sctiengen_web_site:
     resource: "@SCTiengenWebSiteBundle/Resources/config/routing.yml"
     prefix:   /
