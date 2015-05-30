@@ -1,3 +1,4 @@
+<!--
 <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8">
   <div class="btn-group trigger-event-category-filter" data-toggle="buttons">
     <label class="btn btn-primary">
@@ -11,7 +12,7 @@
     </label>
   </div>
 </div>
-
+-->
 <div class="col-xs-8 col-sm-6 col-sm-offset-1 col-md-5">
   <div class="scroll-wrapper">
     <ol class="list-group">
@@ -19,7 +20,7 @@
       {% set day = event.getStartDateTime()|date("Y-m-d") %}
       {% if prevDay|default('') != day %}
       <li class="list-group-item event-day">
-        <time datetime="{{ day }}">{{ event.getStartDateTime()|date("l d. F") }}</time>
+        <time datetime="{{ day }}">{{ event.getStartDateTime()|localizeddate('none', 'none', 'de_DE', null, 'eeee, dd. MMMM yyyy') }}</time>
       </li>
       {% endif %}
       {% set calendarTitle = event.getCalendar().getTitle() %}

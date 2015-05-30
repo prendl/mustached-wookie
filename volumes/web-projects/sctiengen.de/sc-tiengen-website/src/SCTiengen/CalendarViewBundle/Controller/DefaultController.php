@@ -17,7 +17,7 @@ class DefaultController extends Controller {
      */
     public function indexAction(Request $request) {
         $startDateTime = new \DateTime('today -1 day');
-        $endDateTime = new \DateTime('today +1 day +1 week');
+        $endDateTime = new \DateTime('today +1 day +2 week');
         $criteria = Criteria::create()->where(Criteria::expr()->gte('startDateTime', $startDateTime))
         ->andWhere(Criteria::expr()->lt('endDateTime', $endDateTime))
         ->orderBy(array('startDateTime' => 'ASC', 'endDateTime' => 'ASC'));
