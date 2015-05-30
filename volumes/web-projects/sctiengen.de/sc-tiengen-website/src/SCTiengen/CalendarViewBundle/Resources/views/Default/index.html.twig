@@ -22,8 +22,9 @@
         <time datetime="{{ day }}">{{ event.getStartDateTime()|date("l d. F") }}</time>
       </li>
       {% endif %}
-      <li class="list-group-item event event-category-{{ event.getCategory()|lower }}">
-        <div class="category">{{ event.getCategory() }}</div>
+      {% set calendarTitle = event.getCalendar().getTitle() %}
+      <li class="list-group-item event event-category-{{ calendarTitle|lower }}">
+        <div class="category">{{ calendarTitle }}</div>
         <div class="title">{{ event.getTitle() }}</div>
         <div class="desc"></div>
         <div class="time">

@@ -267,6 +267,9 @@ sonata_doctrine_phpcr_admin:
             valid_children:
                 - Symfony\Cmf\Bundle\MenuBundle\Doctrine\Phpcr\MenuNode
 
+monolog:
+    channels: ["calendar_view"]
+
 # Cmf Create Configuration
 fos_rest:
     view:

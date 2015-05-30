@@ -78,14 +78,15 @@ class CalendarEvent {
     }
     
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="Calendar")
+     * @ORM\JoinColumn(name="calendar_id", referencedColumnName="id", nullable=false)
      */
-    private $category;
-    public function getCategory() {
-        return $this->category;
+    private $calendar;
+    public function getCalendar() {
+        return $this->calendar;
     }
-    public function setCategory($category) {
-        $this->category = $category;
+    public function setCalendar($calendar) {
+        $this->calendar = $calendar;
     }
 
 }

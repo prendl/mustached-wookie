@@ -7,8 +7,8 @@ parameters:
         - "cl9a1oatv1t4cldcmkfdh685uc@group.calendar.google.com"
 
 services:
-    sctiengen_calendar_view.calendar_service:
-        class: SCTiengen\CalendarViewBundle\Google\CalendarService
+    sctiengen_calendar_view.calendar_proxy:
+        class: SCTiengen\CalendarViewBundle\Google\CalendarProxy
         calls:
             - [ setAppName, [ "%calendar_service.app_name%" ] ]
             - [ setServiceAccountCredentialsFile, [ "%calendar_service.service_account_credentials%" ] ]
@@ -17,9 +17,10 @@ services:
         class: Doctrine\ORM\EntityManager
         factory: [ "@doctrine", getManager ]
     
-    sctiengen_calendar_view.calendar_proxy:
-        class: SCTiengen\CalendarViewBundle\Google\CalendarProxy
+    sctiengen_calendar_view.calendar_sync_manager:
+        class: SCTiengen\CalendarViewBundle\Google\Sync\CalendarManager
         calls:
-            - [ setCalendarService, [ "@sctiengen_calendar_view.calendar_service" ] ]
+            - [ setLogger, [ "@monolog.logger.calendar_view" ] ]
+            - [ setCalendarProxy, [ "@sctiengen_calendar_view.calendar_proxy" ] ]
             - [ setEntityManager, [ "@sctiengen_calendar_view.entity_manager" ] ]
     

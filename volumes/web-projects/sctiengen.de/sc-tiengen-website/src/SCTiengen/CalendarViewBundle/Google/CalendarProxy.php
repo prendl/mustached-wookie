@@ -40,33 +40,82 @@ class CalendarProxy {
         return new Google_Service_Calendar($this->getClient());
     }
     
-    protected function buildEventParams(\DateTime $startDateTime, \DateTime $endDateTime) {
+    protected function getEventParams() {
         $params = array(
             'singleEvents' => true,
-            'timeMin' => $startDateTime->format(\DateTime::RFC3339),
-            'timeMax' => $endDateTime->format(\DateTime::RFC3339),
-            'fields' => 'items(id,description,end,location,start,summary)'
+            'showDeleted' => true,
+            'fields' => 'items(description,end,id,location,start,status,summary),nextPageToken,nextSyncToken,summary'
         );
         return $params;
     }
     
-    protected function buildCalendarListParams() {
+    protected function getCalendarParams() {
         $params = array(
-            'fields' => 'items(id,summary)'
+            'showDeleted' => true,
+            'fields' => 'items(deleted,id,summary)'
         );
         return $params;
     }
     
-    public function listCalendars() {
-        $cal = $this->getRemoteService();
-        $params = $this->buildCalendarListParams();
-        return $cal->calendarList->listCalendarList($params)->getItems();
+    /**
+     * 
+     * @return Google_Service_Calendar_CalendarList
+     */
+    public function getCalendars() {
+        $service = $this->getRemoteService();
+        return $service->calendarList->listCalendarList($this->getCalendarParams());
     }
     
-    public function listEvents($calendarId, $startDateTime, $endDateTime) {
-        $cal = $this->getRemoteService();
-        $params = $this->buildEventParams($startDateTime, $endDateTime);
-        return $cal->events->listEvents($calendarId, $params)->getItems();
+    /**
+     * 
+     * @param String $calendarId
+     * @param \DateTime $startDateTime
+     * @param \DateTime $endDateTime
+     * @return Google_Service_Calendar_Events
+     */
+    public function getEventSlice($calendarId, \DateTime $startDateTime, \DateTime $endDateTime) {
+        $params = array(
+            'timeMin' => $startDateTime->format(\DateTime::RFC3339),
+            'timeMax' => $endDateTime->format(\DateTime::RFC3339)
+        );
+        return $this->getEvents($calendarId, array_merge($this->getEventParams(), $params));
+    }
+    
+    /**
+     * 
+     * @param String $calendarId
+     * @param String $syncToken
+     * @return Google_Service_Calendar_Events
+     */
+    public function getChangedEvents($calendarId, $syncToken) {
+        $params = array(
+            'syncToken' => $syncToken
+        );
+        return $this->getEvents($calendarId, array_merge($this->getEventParams(), $params));
+    }
+    
+    /**
+     * 
+     * @param String $calendarId
+     * @param String $pageToken
+     * @return Google_Service_Calendar_Events
+     */
+    public function getNextEvents($calendarId, $pageToken) {
+        $params = array(
+            'pageToken' => $pageToken
+        );
+        return $this->getEvents($calendarId, array_merge($this->getEventParams(), $params));
+    }
+    
+    /**
+     * 
+     * @param String $calendarId
+     * @param array  $params
+     * @return Google_Service_Calendar_Events
+     */
+    protected function getEvents($calendarId, $params) {
+        $service = $this->getRemoteService();
+        return $service->events->listEvents($calendarId, $params);
     }
     
 }
