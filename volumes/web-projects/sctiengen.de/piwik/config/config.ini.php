@@ -9,10 +9,11 @@ tables_prefix = "piwik_"
 charset = "utf8"
 
 [General]
-salt = "03f55ff8c5416f9bb11b5bade733b66c"
+proxy_client_headers[] = "HTTP_X_FORWARDED_FOR"
+proxy_host_headers[] = "HTTP_X_FORWARDED_HOST"
+salt = "7076ec2d268e4b98e2a8850a017bb340"
 trusted_hosts[] = "a.sctiengen.de"
 trusted_hosts[] = "sctiengen.de"
-proxy_client_headers[] = HTTP_X_FORWARDED_FOR
 
 [log]
 log_writers[] = file
