@@ -35,7 +35,7 @@ web:
 
 #docker build -t sct_custom/app-php images/app-php
 app:
-    image: sct_custom/app-php
+    image: rendl.net:5000/sct_app-php:1.0
     hostname: app
     tty: true
     restart: always
