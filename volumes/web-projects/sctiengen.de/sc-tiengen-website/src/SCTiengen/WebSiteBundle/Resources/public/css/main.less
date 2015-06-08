@@ -29,6 +29,9 @@ body {
   @media (min-width: @screen-m-min) {
     background: url("../images/page-bg-grass.jpg") repeat scroll 0 0 #4A6224;
   }
+  @media (max-width: @screen-m-min) {
+    font-size: 14px;
+  }
 }
 
 #page {
@@ -63,6 +66,9 @@ body {
   }
 
   #logo-50 {
+    @media (max-width: @screen-m-min) {
+      display: none;
+    }
     position: absolute;
     left: 2%;
     top: 13px;
@@ -313,3 +319,60 @@ body {
   }
 }
 
+.scroll-wrapper {
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+
+  .scroller {
+    position: absolute;
+    width: 100%;
+  }
+
+  .list-group {
+    position: relative;
+    width: 100%;
+  }
+
+  .list-group .list-group-item {
+    width: 100%;
+  }
+
+}
+
+@media (min-width: 1200px) {
+  .scroll-wrapper {
+    height: 400px;
+  }
+}
+
+.event-day {
+  font-size: 18px;
+}
+
+.event {
+
+  .title {
+    font-weight: bold;
+  }
+
+  .category {
+    float: right;
+    font-size: 13px;
+    padding: 1px 3px;
+  }
+
+  &.event-category-training .category {
+    background-color: @color-yellow;
+  }
+
+  &.event-category-heimspiele .category {
+    background-color: @color-blue-bg;
+  }
+
+  &.event-category-veranstaltungen .category {
+    background-color: #d9534f;
+  }
+
+}
