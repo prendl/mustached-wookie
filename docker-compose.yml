@@ -15,9 +15,9 @@ db:
     ports:
         - "9306:3306"
 
-#docker build -t sct_custom/nginx images/nginx
+#docker build -t rendl.net:5000/sct_web:1.0 images/nginx
 web:
-    image: sct_custom/nginx
+    image: rendl.net:5000/sct_web:1.0
     hostname: web
     tty: true
     restart: always
@@ -33,7 +33,7 @@ web:
         - "9080:80"
         - "9081:443"
 
-#docker build -t sct_custom/app-php images/app-php
+#docker build -t rendl.net:5000/sct_app-php:1.0 images/app-php
 app:
     image: rendl.net:5000/sct_app-php:1.0
     hostname: app
