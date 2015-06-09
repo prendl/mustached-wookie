@@ -44,9 +44,10 @@ body {
   box-shadow: 1px 2px 3px #333;
   padding: 0 @page-padding 50px;
   margin-bottom: @page-footer-h + @page-footer-distance-top + @page-footer-distance-bottom;
-  margin-top: 20px;
+  margin-top: 10px;
   @media (min-width: @screen-m-min) {
     margin-left: @sidebar-nav-tile-m - @page-padding - 1;
+    margin-top: 20px;
     min-height: 5 * @sidebar-nav-tile-m + @sidebar-distance-top;
   }
   @media (min-width: @screen-l-min) {
@@ -74,7 +75,12 @@ body {
     top: 13px;
   }
 }
-
+@media(max-width: @screen-m-min) {
+  .container {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
 .breadcrumb {
   @bread-color: #333;
   background-color: rgba(245, 245, 245, 0.3);
@@ -184,7 +190,7 @@ body {
     padding: 10px;
     position: absolute;
     top: -68px;
-    width: 402px;
+    width: 403px;
     
     & .open {
 	  display: block;
@@ -295,12 +301,20 @@ body {
   float: right;
   padding-left: 20px;
   width: 400px;
+  @media (max-width: @screen-m-min) {  
+    width: 175px;
+  }
   
-  li {
+  .orientation-horizontal li {
     height: 25px;
+    min-width: 30px;
+    @media (max-width: @screen-m-min) {
+      max-width: 30px;
+    }
     
     a {
       line-height: 25px;
+      top: -3px;
     }
   }
 }
