@@ -1,21 +1,21 @@
-#docker build -t sct_custom/dbdata images/dbdata
-dbData:
-    image: sct_custom/dbdata
-    hostname: dbdata
+#docker build -t rendl.net:5000/sct_db-data:1.0 images/db-data
+data:
+    image: rendl.net:5000/sct_db-data:1.0
 
+#docker build -t rendl.net:5000/sct_db:1.0 images/db-mariadb
 db:
-    image: mariadb
+    image: rendl.net:5000/sct_db:1.0
     hostname: db
     tty: true
     restart: always
     environment:
         - "LC_ALL=C.UTF-8"
     volumes_from:
-        - dbData
+        - data
     ports:
         - "9306:3306"
 
-#docker build -t rendl.net:5000/sct_web:1.0 images/nginx
+#docker build -t rendl.net:5000/sct_web:1.0 images/web-nginx
 web:
     image: rendl.net:5000/sct_web:1.0
     hostname: web

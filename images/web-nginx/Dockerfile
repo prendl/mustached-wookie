@@ -15,8 +15,7 @@ ENV NGINX_VERSION 1.9.1-1~trusty
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-    ca-certificates nginx=${NGINX_VERSION} \
-    && rm -rf /var/lib/apt/lists/*
+    ca-certificates nginx=${NGINX_VERSION}
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
