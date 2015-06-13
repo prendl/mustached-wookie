@@ -1,6 +1,9 @@
 {% extends "SCTiengenWebSiteBundle:Page:standard.html.twig" %}
 
 {% block page_content -%}
-<h1>{{ message.title }}</h1>
-<p>{{ message.content|markdown }}</p>
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8">
+    {{ message.content|markdown }}
+  </div>
+</div>
 {%- endblock %}

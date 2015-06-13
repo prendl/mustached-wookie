@@ -10,6 +10,17 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 class NewsMessageAdmin extends Admin {
 	
+    /**
+     * Default Datagrid values
+     *
+     * @var array
+     */
+    protected $datagridValues = array(
+            '_page' => 1,            // display the first page (default = 1)
+            '_sort_order' => 'DESC', // reverse order (default = 'ASC')
+            '_sort_by' => 'publicationDate'  // name of the ordered field
+    );
+    
 	/**
 	 * @param \Sonata\AdminBundle\Show\ShowMapper $showMapper
 	 *
@@ -33,6 +44,8 @@ class NewsMessageAdmin extends Admin {
 			->add('publicationDate')
 			->add('summary')
 			->add('content')
+			->add('topNews')
+			->add('sorting')
 			->end()
 		;
 	}
@@ -46,7 +59,7 @@ class NewsMessageAdmin extends Admin {
 		$listMapper
 			->addIdentifier('title')
 			->add('summary')
-			->add('content')
+			->add('publicationDate')
 			->add('_action', 'actions', array(
 					'actions' => array(
 							'show' => array(),

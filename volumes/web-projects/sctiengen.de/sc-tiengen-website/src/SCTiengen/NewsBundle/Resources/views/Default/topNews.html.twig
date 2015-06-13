@@ -1,7 +1,7 @@
 {% if not(messages is empty) %}
 <div class="row">
   <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-    <h2><a href="{{ path('news_list') }}">Mitteilungen</a></h2>
+    <h2><a href="{{ path('news_list') }}">Mitteilungen&#160;»</a></h2>
     {% for message in messages %}
       <div class="list-group">
         <a href="{{ path('news_detail', {'id': message.id}) }}" class="list-group-item">

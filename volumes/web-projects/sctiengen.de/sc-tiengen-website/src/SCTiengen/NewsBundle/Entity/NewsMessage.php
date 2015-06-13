@@ -3,45 +3,64 @@
 namespace SCTiengen\NewsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishableInterface;
+use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishTimePeriodInterface;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="news_message")
  */
-class NewsMessage {
-	
-	/**
-	 * @ORM\Column(type="integer")
-	 * @ORM\Id
-	 * @ORM\GeneratedValue(strategy="AUTO")
-	 */
-	protected $id;
-	/**
-	 * @ORM\Column(type="string", length=100)
-	 */
-	protected $title;
-	/**
-	 * @ORM\Column(type="text", nullable=true)
-	 */
-	protected $summary;
-	/**
-	 * @ORM\Column(type="text")
-	 */
-	protected $content;
-	/**
-	 * @ORM\Column(type="date")
-	 */
-	protected $publicationDate;
-	/**
-	 * @ORM\Column(type="datetime", nullable=true)
-	 */
-	protected $publishStartDate;
-	/**
-	 * @ORM\Column(type="datetime", nullable=true)
-	 */
-	protected $publishEndDate;
-	
-
+class NewsMessage implements PublishableInterface, PublishTimePeriodInterface {
+    
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $title;
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $summary;
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $content;
+    /**
+     * @ORM\Column(type="date")
+     */
+    protected $publicationDate;
+    /**
+     * @ORM\Column(type="boolean", nullable=false, options={"default":true})
+     */
+    protected $publishable;
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $publishStartDate;
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $publishEndDate;
+    /**
+     * @ORM\Column(type="boolean", nullable=false, options={"default":false})
+     */
+    protected $topNews;
+    /**
+     * @ORM\Column(type="integer", nullable=false, options={"unsigned":true, "default":0})
+     */
+    protected $sorting;
+    
+    
+    public function __construct() {
+        $this->sorting = 0;
+        $this->publicationDate = new \DateTime();
+    }
+    
     /**
      * Get id
      *
@@ -127,7 +146,7 @@ class NewsMessage {
      * @param \DateTime $publicationDate
      * @return NewsMessage
      */
-    public function setPublicationDate($publicationDate)
+    public function setPublicationDate(\DateTime $publicationDate)
     {
         $this->publicationDate = $publicationDate;
 
@@ -150,7 +169,7 @@ class NewsMessage {
      * @param \DateTime $publishStartDate
      * @return NewsMessage
      */
-    public function setPublishStartDate($publishStartDate)
+    public function setPublishStartDate(\DateTime $publishStartDate=null)
     {
         $this->publishStartDate = $publishStartDate;
 
@@ -173,7 +192,7 @@ class NewsMessage {
      * @param \DateTime $publishEndDate
      * @return NewsMessage
      */
-    public function setPublishEndDate($publishEndDate)
+    public function setPublishEndDate(\DateTime $publishEndDate=null)
     {
         $this->publishEndDate = $publishEndDate;
 
@@ -189,4 +208,32 @@ class NewsMessage {
     {
         return $this->publishEndDate;
     }
+    
+    public function getTopNews() {
+        return $this->topNews;
+    }
+    
+    public function setTopNews($topNews) {
+        $this->topNews = $topNews;
+        return $this;
+    }
+    
+    public function getSorting() {
+        return $this->sorting;
+    }
+    
+    public function setSorting($sorting) {
+        $this->sorting = $sorting;
+        return $this;
+    }
+ 
+    public function isPublishable() {
+      return $this->publishable;
+    }
+ 
+    public function setPublishable($publishable) {
+      $this->publishable = $publishable;
+      return $this;
+    }
+
 }
