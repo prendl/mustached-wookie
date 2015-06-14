@@ -45,6 +45,9 @@ app:
         - "volumes/web-projects:/var/www"
         - "volumes/etc-php:/usr/local/etc/php"
         - "volumes/php-extensions:/usr/local/lib/php/extensions"
+        - "volumes/app-config/SCTiengenWebsite-82c53e2188ee.json:/var/www/sctiengen.de/sc-tiengen-website/app/config/SCTiengenWebsite-82c53e2188ee.json"
+        - "volumes/app-config/users.yml:/var/www/sctiengen.de/sc-tiengen-website/app/config/users.yml"
+        - "volumes/app-crontab/calendar-sync:/etc/cron.d/calendar-sync"
     links:
         - db
     ports:
