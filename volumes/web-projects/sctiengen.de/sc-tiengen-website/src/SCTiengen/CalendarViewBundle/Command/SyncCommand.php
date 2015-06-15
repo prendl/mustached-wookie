@@ -30,7 +30,7 @@ class SyncCommand extends ContainerAwareCommand {
             $calendarSyncManager->updateCalendars();
         }
         $startDateTime = new \DateTime('today -1 day');
-        $endDateTime = new \DateTime('today +1 day +1 week');
+        $endDateTime = new \DateTime('today +1 day +1 month');
         $calendarSyncManager->syncAllCalendarEvents($startDateTime, $endDateTime);
     }
     

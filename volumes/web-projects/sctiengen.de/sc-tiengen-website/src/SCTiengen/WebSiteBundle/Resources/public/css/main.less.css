@@ -329,10 +329,10 @@ body {
   background-color: #ffce18;
 }
 
-.event.event-category-heimspiele .category {
+.event.event-category-heimspiel .category {
   background-color: #63a5d8;
 }
 
-.event.event-category-veranstaltungen .category {
+.event.event-category-veranstaltung .category {
   background-color: #d9534f;
 }
