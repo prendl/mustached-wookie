@@ -44,7 +44,7 @@ class NewsMessageAdmin extends Admin {
 			->add('publicationDate')
 			->add('summary')
 			->add('content')
-			->add('topNews')
+			->add('topNews', 'checkbox', array('required' => false))
 			->add('sorting')
 			->end()
 		;
