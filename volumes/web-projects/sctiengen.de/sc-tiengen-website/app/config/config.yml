@@ -158,6 +158,8 @@ sonata_block:
             contexts: [admin]
 
 sonata_admin:
+    title: SC Tiengen Website Administration
+    title_logo: /bundles/sctiengenwebsite/images/sct-vereinswappen.png
     extensions:
         cmf_core.admin_extension.child:
             implements:
@@ -209,6 +211,10 @@ sonata_admin:
                 items:
                     - cmf_menu.menu_admin
                     - cmf_menu.node_admin
+            news:
+                label: News
+                items:
+                    - sctiengen_news.admin.news_message
 
 sonata_doctrine_phpcr_admin:
     document_tree_defaults: [locale]

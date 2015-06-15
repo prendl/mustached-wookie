@@ -3,4 +3,4 @@ services:
         class: SCTiengen\NewsBundle\Admin\NewsMessageAdmin
         arguments: [null, SCTiengen\NewsBundle\Entity\NewsMessage, SCTiengenNewsBundle:NewsMessageAdmin]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: news, label: news_message }
+            - { name: sonata.admin, manager_type: orm, group: news, label: "List" }

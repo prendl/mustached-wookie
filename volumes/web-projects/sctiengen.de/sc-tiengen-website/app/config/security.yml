@@ -9,7 +9,7 @@ security:
 
     role_hierarchy:
         ROLE_EDITOR:      [ROLE_USER, ROLE_CAN_UPLOAD_FILE]
-        ROLE_ADMIN:       [ROLE_EDITOR]
+        ROLE_ADMIN:       [ROLE_EDITOR, ROLE_SONATA_ADMIN]
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
