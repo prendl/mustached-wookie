@@ -5,12 +5,13 @@ namespace SCTiengen\NewsBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishableInterface;
 use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishTimePeriodInterface;
+use Symfony\Cmf\Bundle\SeoBundle\SeoAwareInterface;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="news_message")
  */
-class NewsMessage implements PublishableInterface, PublishTimePeriodInterface {
+class NewsMessage implements PublishableInterface, PublishTimePeriodInterface, SeoAwareInterface {
     
     /**
      * @ORM\Column(type="integer")
@@ -55,6 +56,10 @@ class NewsMessage implements PublishableInterface, PublishTimePeriodInterface {
      */
     protected $sorting;
     
+    /**
+     * @ORM\Column(type="object")
+     */
+    protected $seoMetadata;
     
     public function __construct() {
         $this->sorting = 0;
@@ -235,5 +240,19 @@ class NewsMessage implements PublishableInterface, PublishTimePeriodInterface {
       $this->publishable = $publishable;
       return $this;
     }
-
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function getSeoMetadata() {
+        return $this->seoMetadata;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function setSeoMetadata($metadata) {
+        $this->seoMetadata = $metadata;
+    }
+    
 }

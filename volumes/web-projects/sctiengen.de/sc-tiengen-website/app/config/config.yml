@@ -97,8 +97,6 @@ cmf_content:
 cmf_core:
     persistence:
         phpcr: true
-        # if you want another basepath
-        # basepath: /custom/basepath
     publish_workflow: true
 
 # Cmf Routing Configuration
@@ -127,8 +125,8 @@ sonata_seo:
         title: SC Freiburg-Tiengen
 
 cmf_seo:
-    title: %%content_title%% - SC Freiburg-Tiengen
-    description: %%content_description%%
+    title: "%%content_title%% - SC Freiburg-Tiengen"
+    description: "%%content_description%%"
 
 # Menu Configuration
 knp_menu:
