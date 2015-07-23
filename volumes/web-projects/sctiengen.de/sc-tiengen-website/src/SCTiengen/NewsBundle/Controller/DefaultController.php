@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\Criteria;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Cmf\Bundle\SeoBundle\SeoPresentationInterface;
 
 class DefaultController extends Controller {
     
@@ -44,6 +45,13 @@ class DefaultController extends Controller {
         if ($result->isEmpty()) {
             throw $this->createNotFoundException('Unknown ID ' . $id);
         }
+
+        /**
+         * @var $seoPage SeoPresentationInterface
+         */
+        $seoPage = $this->get('cmf_seo.presentation');
+        $seoPage->updateSeoPage($result->first());
+        
         return $this->render('SCTiengenNewsBundle:Default:detail.html.twig', array('message' => $result->first()));
     } 
     

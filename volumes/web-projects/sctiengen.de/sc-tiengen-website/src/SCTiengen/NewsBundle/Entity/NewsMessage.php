@@ -5,6 +5,7 @@ namespace SCTiengen\NewsBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishableInterface;
 use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishTimePeriodInterface;
+use Symfony\Cmf\Bundle\SeoBundle\Doctrine\Phpcr\SeoMetadata;
 use Symfony\Cmf\Bundle\SeoBundle\SeoAwareInterface;
 
 /**
@@ -64,6 +65,7 @@ class NewsMessage implements PublishableInterface, PublishTimePeriodInterface, S
     public function __construct() {
         $this->sorting = 0;
         $this->publicationDate = new \DateTime();
+        $this->seoMetadata = new SeoMetadata();
     }
     
     /**

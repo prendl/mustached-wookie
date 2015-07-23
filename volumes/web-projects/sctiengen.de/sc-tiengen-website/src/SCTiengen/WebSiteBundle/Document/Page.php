@@ -5,6 +5,7 @@ namespace SCTiengen\WebSiteBundle\Document;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
 use Symfony\Cmf\Bundle\ContentBundle\Doctrine\Phpcr\StaticContent;
+use Symfony\Cmf\Bundle\SeoBundle\Doctrine\Phpcr\SeoMetadata;
 use Symfony\Cmf\Bundle\SeoBundle\SeoAwareInterface;
 /**
  * @PHPCR\Document(referenceable=true)
@@ -21,6 +22,7 @@ class Page extends StaticContent implements SeoAwareInterface {
     public function __construct() {
         parent::__construct();
         $this->children = new ArrayCollection();
+        $this->seoMetadata = new SeoMetadata();
     }
     
     /**
