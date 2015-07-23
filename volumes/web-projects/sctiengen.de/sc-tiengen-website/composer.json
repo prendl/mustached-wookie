@@ -38,7 +38,9 @@
         "sonata-project/user-bundle": "~2.2",
         "sonata-project/doctrine-orm-admin-bundle": "~2.3",
         "wjzijderveld/check-bundles": "~1.1",
-        "google/apiclient": "1.*"
+        "google/apiclient": "1.*",
+        "phpcr/phpcr-shell": "dev-master",
+        "dantleech/glob-finder": "dev-master"
     },
     "require-dev": {
         "liip/functional-test-bundle": "~1.0",
