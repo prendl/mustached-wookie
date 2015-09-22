@@ -336,3 +336,32 @@ body {
 .event.event-category-veranstaltung .category {
   background-color: #d9534f;
 }
+
+
+.carousel-control {
+  bottom: 30px;
+}
+.carousel-caption {
+  bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  text-shadow: none;
+}
+.carousel-inner {
+  padding-bottom: 30px;
+}
+
+
+a[target=_blank]:after {
+  content: "\e164";
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-size: 80%;
+  font-style: normal;
+  font-weight: normal;
+  left: 3px;
+  line-height: 1;
+  position: relative;
+  top: 0;
+  -webkit-font-smoothing: antialiased;
+}

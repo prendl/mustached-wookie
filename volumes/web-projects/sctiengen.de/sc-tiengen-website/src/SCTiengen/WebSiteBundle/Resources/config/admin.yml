@@ -9,6 +9,7 @@ services:
             - 'SonataAdminBundle:CRUD'
         calls:
             - [ setTranslationDomain, [SCTiengenWebSiteBundle]]
+    
     sctiengen_website.admin.download:
         class: SCTiengen\WebSiteBundle\Admin\DownloadBlockAdmin
         tags:
@@ -19,6 +20,7 @@ services:
             - 'SonataAdminBundle:CRUD'
         calls:
             - [ setTranslationDomain, [SCTiengenWebSiteBundle]]
+    
     sctiengen_website.admin.page:
         class: SCTiengen\WebSiteBundle\Admin\PageAdmin
         tags:
@@ -29,5 +31,9 @@ services:
             - 'SonataAdminBundle:CRUD'
         calls:
             - [ setTranslationDomain, [SCTiengenWebSiteBundle]]
+    
     sctiengen_website.admin_extension.renderhints:
         class: SCTiengen\WebSiteBundle\Admin\Extension\RenderHintsExtension
+    
+    sctiengen_website.admin_extension.imagecaption:
+        class: SCTiengen\WebSiteBundle\Admin\Extension\ImageCaptionExtension

@@ -6,6 +6,7 @@ services:
             - [ "/cms/routes" ]
         tags:
             - { name: "doctrine_phpcr.initializer" }
+    
     sctiengen_website.block.markdown:
         class: SCTiengen\WebSiteBundle\Block\MarkdownBlockService
         arguments:
@@ -13,6 +14,7 @@ services:
             - "@templating"
         tags:
             - { name: "sonata.block" }
+    
     sctiengen_website.menu.voter:
         class: SCTiengen\WebSiteBundle\Menu\CurrentMenuItemVoter
         calls:
