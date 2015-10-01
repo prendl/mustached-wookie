@@ -4,7 +4,7 @@ $(document).ready(function() {
     $('#login-box').toggle();
   });
   
-  $('a[href^="http://"]').attr('target', '_blank');
+  $('a[href^="http://"],a[href^="https://"]').attr('target', '_blank');
   
   /*
   var dummyData = [
