@@ -3,7 +3,7 @@
 # to `latest`! See
 # https://github.com/phusion/baseimage-docker/blob/master/Changelog.md
 # for a list of version numbers.
-FROM phusion/baseimage:0.9.16
+FROM phusion/baseimage:0.9.18
 
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
@@ -11,46 +11,53 @@ CMD ["/sbin/my_init"]
 # persistent / runtime deps
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-    ca-certificates curl libpcre3 librecode0 libsqlite3-0 libxml2 git libicu52 libpng12-0 libgd3
+      ca-certificates curl libpcre3 librecode0 libsqlite3-0 libxml2 \
+      git libicu52 libpng12-0 libgd3 \
+    && rm -r /var/lib/apt/lists/*
+
 
 # phpize deps
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-    autoconf file g++ gcc libc-dev make pkg-config re2c
+      autoconf file g++ gcc libc-dev make pkg-config re2c \
+    && rm -r /var/lib/apt/lists/*
 
 ENV PHP_INI_DIR /usr/local/etc/php
 RUN mkdir -p $PHP_INI_DIR/conf.d
 
 ENV PHP_EXTRA_CONFIGURE_ARGS --enable-fpm --with-fpm-user=www-data --with-fpm-group=www-data
 
-ENV GPG_KEYS 6E4F6AB321FDC07F2C332E3AC2BF0BC433CFC8B3 0BD78B5F97500D450838F95DFE857D9A90D90EC1
+ENV GPG_KEYS 0BD78B5F97500D450838F95DFE857D9A90D90EC1 6E4F6AB321FDC07F2C332E3AC2BF0BC433CFC8B3
 RUN set -xe \
 	&& for key in $GPG_KEYS; do \
 		gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$key"; \
 	done
 
-ENV PHP_VERSION 5.6.9
+ENV PHP_VERSION 5.6.17
+ENV PHP_FILENAME php-5.6.17.tar.xz
+ENV PHP_SHA256 ea9d5749380c7c7171e131616466deacd7cb124b5010eafc34e551b0a7b0fb2c
 
 # --enable-mysqlnd is included below because it's harder to compile after the fact the extensions are (since it's a plugin for several extensions, not an extension in itself)
 RUN buildDeps=" \
 		$PHP_EXTRA_BUILD_DEPS \
-		bzip2 \
 		libcurl4-openssl-dev \
-		libpcre3-dev \
 		libreadline6-dev \
 		librecode-dev \
 		libsqlite3-dev \
 		libssl-dev \
 		libxml2-dev \
+		xz-utils \
+		libpcre3-dev \
 	" \
 	&& set -x \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends && rm -rf /var/lib/apt/lists/* \
-	&& curl -SL "http://php.net/get/php-$PHP_VERSION.tar.bz2/from/this/mirror" -o php.tar.bz2 \
-	&& curl -SL "http://php.net/get/php-$PHP_VERSION.tar.bz2.asc/from/this/mirror" -o php.tar.bz2.asc \
-	&& gpg --verify php.tar.bz2.asc \
+	&& curl -fSL "http://php.net/get/$PHP_FILENAME/from/this/mirror" -o "$PHP_FILENAME" \
+	&& echo "$PHP_SHA256 *$PHP_FILENAME" | sha256sum -c - \
+	&& curl -fSL "http://php.net/get/$PHP_FILENAME.asc/from/this/mirror" -o "$PHP_FILENAME.asc" \
+	&& gpg --verify "$PHP_FILENAME.asc" \
 	&& mkdir -p /usr/src/php \
-	&& tar -xof php.tar.bz2 -C /usr/src/php --strip-components=1 \
-	&& rm php.tar.bz2* \
+	&& tar -xf "$PHP_FILENAME" -C /usr/src/php --strip-components=1 \
+	&& rm "$PHP_FILENAME"* \
 	&& cd /usr/src/php \
 	&& ./configure \
 		--with-config-file-path="$PHP_INI_DIR" \

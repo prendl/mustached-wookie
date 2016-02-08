@@ -1,10 +1,10 @@
-#docker build -t rendl.net:5000/sct_db-data:1.0 images/db-data
+#docker build -t docker-registry.rendl.net:5000/sct_db-data:1.0 images/db-data
 data:
-    image: rendl.net:5000/sct_db-data:1.0
+    image: docker-registry.rendl.net:5000/sct_db-data:1.0
 
-#docker build -t rendl.net:5000/sct_db:1.0 images/db-mariadb
+#docker build -t docker-registry.rendl.net:5000/sct_db:1.0 images/db-mariadb
 db:
-    image: rendl.net:5000/sct_db:1.0
+    image: docker-registry.rendl.net:5000/sct_db:1.0
     hostname: db
     tty: true
     restart: always
@@ -15,9 +15,9 @@ db:
     ports:
         - "9306:3306"
 
-#docker build -t rendl.net:5000/sct_web:1.0 images/web-nginx
+#docker build -t docker-registry.rendl.net:5000/sct_web:1.0 images/web-nginx
 web:
-    image: rendl.net:5000/sct_web:1.0
+    image: docker-registry.rendl.net:5000/sct_web:1.0
     hostname: web
     tty: true
     restart: always
@@ -33,9 +33,9 @@ web:
         - "9080:80"
         - "9081:443"
 
-#docker build -t rendl.net:5000/sct_app-php:1.0 images/app-php
+#docker build -t docker-registry.rendl.net:5000/sct_app-php:1.0 images/app-php
 app:
-    image: rendl.net:5000/sct_app-php:1.0
+    image: docker-registry.rendl.net:5000/sct_app-php:1.0
     hostname: app
     tty: true
     restart: always
