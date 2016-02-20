@@ -1,55 +1,68 @@
-#docker build -t docker-registry.rendl.net:5000/sct_db-data:1.0 images/db-data
-data:
-    image: docker-registry.rendl.net:5000/sct_db-data:1.0
+version: "2"
 
-#docker build -t docker-registry.rendl.net:5000/sct_db:1.0 images/db-mariadb
-db:
-    image: docker-registry.rendl.net:5000/sct_db:1.0
-    hostname: db
-    tty: true
-    restart: always
-    environment:
-        - "LC_ALL=C.UTF-8"
-    volumes_from:
-        - data
-    ports:
-        - "9306:3306"
+services:
 
-#docker build -t docker-registry.rendl.net:5000/sct_web:1.0 images/web-nginx
-web:
-    image: docker-registry.rendl.net:5000/sct_web:1.0
-    hostname: web
-    tty: true
-    restart: always
-    environment:
-        - "LC_ALL=C.UTF-8"
-    volumes: 
-        - "volumes/nginx-sites-enabled:/etc/nginx/sites-enabled"
-    volumes_from:
-        - app
-    links:
-        - app
-    ports:
-        - "9080:80"
-        - "9081:443"
+    # docker build -t docker-registry.rendl.net:5000/sct_db-data:1.0 images/db-data
+    # docker push docker-registry.rendl.net:5000/sct_db-data:1.0
+    db_data:
+        image: "docker-registry.rendl.net:5000/sct_db-data:1.0"
+        networks: []
 
-#docker build -t docker-registry.rendl.net:5000/sct_app-php:1.0 images/app-php
-app:
-    image: docker-registry.rendl.net:5000/sct_app-php:1.0
-    hostname: app
-    tty: true
-    restart: always
-    environment:
-        - "LC_ALL=C.UTF-8"
-    volumes:
-        - "volumes/web-projects:/var/www"
-        - "volumes/etc-php:/usr/local/etc/php"
-        - "volumes/php-extensions:/usr/local/lib/php/extensions"
-        - "volumes/app-config/calendar_service_account.json:/var/www/sctiengen.de/sc-tiengen-website/app/config/calendar_service_account.json"
-        - "volumes/app-config/users.yml:/var/www/sctiengen.de/sc-tiengen-website/app/config/users.yml"
-        - "volumes/app-crontab/calendar-sync:/etc/cron.d/calendar-sync"
-    links:
-        - db
-    ports:
-        - "8000:8000"
+    # docker build -t docker-registry.rendl.net:5000/sct_db:1.0 images/db-mariadb
+    # docker push docker-registry.rendl.net:5000/sct_db:1.0
+    db:
+        image: "docker-registry.rendl.net:5000/sct_db:1.0"
+        tty: true
+        restart: always
+        environment:
+            - "LC_ALL=C.UTF-8"
+        depends_on:
+            - db_data
+        volumes_from:
+            - db_data
+        networks:
+            - default
+        ports:
+            - "9306:3306"
 
+    # docker build -t docker-registry.rendl.net:5000/sct_web:1.0 images/web-nginx
+    # docker push docker-registry.rendl.net:5000/sct_web:1.0
+    web:
+        image: "docker-registry.rendl.net:5000/sct_web:1.0"
+        tty: true
+        restart: always
+        environment:
+            - "LC_ALL=C.UTF-8"
+        depends_on:
+            - app
+        volumes:
+            - "./volumes/nginx-sites-enabled:/etc/nginx/sites-enabled"
+        volumes_from:
+            - app
+        networks:
+            - default
+        ports:
+            - "9080:80"
+            - "9081:443"
+
+    # docker build -t docker-registry.rendl.net:5000/sct_app-php:1.0 images/app-php
+    # docker push docker-registry.rendl.net:5000/sct_app-php:1.0
+    app:
+        image: "docker-registry.rendl.net:5000/sct_app-php:1.0"
+        tty: true
+        restart: always
+        environment:
+            - "LC_ALL=C.UTF-8"
+        depends_on:
+            - db
+        volumes:
+            - "./volumes/web-projects:/var/www"
+            - "./volumes/etc-php:/usr/local/etc/php"
+            - "./volumes/php-extensions:/usr/local/lib/php/extensions"
+            - "./volumes/app-config/calendar_service_account.json:/var/www/sctiengen.de/sc-tiengen-website/app/config/calendar_service_account.json"
+            - "./volumes/app-config/users.yml:/var/www/sctiengen.de/sc-tiengen-website/app/config/users.yml"
+            - "./volumes/app-crontab/calendar-sync:/etc/cron.d/calendar-sync"
+        networks:
+            - default
+        ports:
+            - "8000:8000"
