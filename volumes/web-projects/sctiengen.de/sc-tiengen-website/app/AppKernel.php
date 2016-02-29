@@ -36,7 +36,6 @@ class AppKernel extends Kernel
 
             new Symfony\Cmf\Bundle\CreateBundle\CmfCreateBundle(),
             new FOS\RestBundle\FOSRestBundle(),
-            new JMS\SerializerBundle\JMSSerializerBundle(),
 
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Sonata\DoctrinePHPCRAdminBundle\SonataDoctrinePHPCRAdminBundle(),
