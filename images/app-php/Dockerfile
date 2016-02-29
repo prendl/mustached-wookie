@@ -48,6 +48,7 @@ RUN buildDeps=" \
 		libxml2-dev \
 		xz-utils \
 		libpcre3-dev \
+		libsodium-dev \
 	" \
 	&& set -x \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends && rm -rf /var/lib/apt/lists/* \
